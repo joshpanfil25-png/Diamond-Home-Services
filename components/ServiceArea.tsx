@@ -25,6 +25,26 @@ export default function ServiceArea() {
           ))}
         </div>
 
+        <div className="mt-10">
+          <h3 className="text-sm font-bold uppercase tracking-widest text-diamond-red">
+            {serviceArea.townsHeading}
+          </h3>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {serviceArea.towns.map((town) => (
+              <li
+                key={town}
+                className="inline-flex items-center gap-1.5 rounded-[6px] border border-diamond-border bg-diamond-warm px-3 py-1.5 text-sm font-semibold text-diamond-charcoal"
+              >
+                <MapPin className="h-3.5 w-3.5 text-diamond-red" aria-hidden="true" />
+                {town}
+              </li>
+            ))}
+            <li className="inline-flex items-center px-3 py-1.5 text-sm font-semibold text-diamond-charcoal/70">
+              &amp; more
+            </li>
+          </ul>
+        </div>
+
         <a
           href="#estimate"
           className="mt-8 inline-flex items-center gap-1.5 font-semibold text-diamond-red hover:text-diamond-red-dark"

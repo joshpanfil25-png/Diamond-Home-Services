@@ -54,12 +54,13 @@ export default function ProjectGallery() {
         </div>
 
         <p className="mt-6 text-xs text-muted-foreground">
-          Project photos are representative of Diamond Home Service roofing work.
+          Project photos are representative of Diamond Home Service roofing,
+          siding, window, and gutter work.
         </p>
 
         <div className="mt-8">
           <CtaButton href="#estimate" variant="outline">
-            View More Roofing Projects
+            View More Projects
           </CtaButton>
         </div>
       </div>

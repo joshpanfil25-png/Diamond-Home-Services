@@ -21,7 +21,7 @@ export const company = {
 
 export const utilityBar = {
   left: "Serving Homeowners Throughout Chicagoland",
-  financing: "Flexible Financing Available",
+  financing: "0% Financing Available",
 };
 
 export const nav: {
@@ -52,13 +52,13 @@ export const hero = {
   eyebrow: "ROOFING • REPAIR • STORM RESTORATION",
   h1: "Chicagoland's Most Trusted Roofing Company",
   supporting:
-    "Protect your home with dependable roofing, honest recommendations, written warranties, and flexible financing from a company that has served Chicagoland homeowners for more than 50 years.",
+    "Protect your home with dependable roofing, honest recommendations, written warranties, and 0% financing from a company that has served Chicagoland homeowners for more than 50 years.",
   primaryCta: "Get a Free Roofing Estimate",
   serviceLine: "Serving Chicago and the entire metropolitan area",
   trustPoints: [
     "50+ years serving Chicagoland",
     "Written warranties",
-    "Flexible financing",
+    "0% financing available",
   ],
 };
 
@@ -66,7 +66,7 @@ export const trustBar = [
   { label: "50+ Years of Local Experience", icon: "clock" },
   { label: "Licensed and Bonded", icon: "shield" },
   { label: "Written Warranties", icon: "file" },
-  { label: "Flexible Financing Available", icon: "wallet" },
+  { label: "0% Financing Available", icon: "wallet" },
 ];
 
 export const trustPillars = {
@@ -135,6 +135,27 @@ export const serviceArea = {
     { title: "South Suburbs", note: "Extensive local experience" },
     { title: "West Suburbs", note: "Extensive local experience" },
     { title: "North & Northwest Suburbs", note: "Serving surrounding communities" },
+  ],
+  // Named towns strengthen local SEO. Drawn from the communities Diamond
+  // serves across Chicago and the South/West/NW suburbs.
+  townsHeading: "Communities We Serve",
+  towns: [
+    "Chicago",
+    "Naperville",
+    "Orland Park",
+    "Oak Lawn",
+    "Tinley Park",
+    "Downers Grove",
+    "Plainfield",
+    "Bolingbrook",
+    "Cicero",
+    "Berwyn",
+    "Oak Park",
+    "Elmhurst",
+    "Evanston",
+    "Schaumburg",
+    "Joliet",
+    "Aurora",
   ],
 };
 

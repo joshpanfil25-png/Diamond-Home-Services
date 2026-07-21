@@ -4,7 +4,7 @@ import CtaButton from "@/components/CtaButton";
 
 const points = [
   "Simple financing inquiry",
-  "Options for qualified homeowners",
+  "0% financing for qualified homeowners",
   "Clear next steps",
   "No obligation to request information",
 ];
@@ -17,14 +17,14 @@ export default function FinancingSection() {
         <div className="bg-diamond-red text-diamond-white">
           <div className="max-w-[640px] px-6 sm:px-10 lg:pl-10 lg:pr-16 py-14 lg:py-20 lg:ml-auto">
             <span className="text-sm font-bold uppercase tracking-widest text-diamond-white/90">
-              Flexible Financing
+              0% Financing Available
             </span>
             <h2 className="mt-3 font-display text-3xl sm:text-4xl font-extrabold">
-              A New Roof Doesn&apos;t Have to Wait
+              0% Financing on Your Next Home Project
             </h2>
             <p className="mt-4 text-lg text-diamond-white/90">
-              Explore flexible financing options that can help make an essential roofing project
-              more manageable.
+              Qualified homeowners can move forward now and pay over time with 0% financing —
+              making roofing, siding, windows, and gutters more manageable.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <CtaButton href="#estimate" variant="charcoal">

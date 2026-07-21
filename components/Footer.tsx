@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { company, footer } from "@/content/site";
-import { media } from "@/content/media";
+import { badges, media } from "@/content/media";
 
 // lucide-react no longer ships brand icons — inline SVG instead.
 function FacebookIcon({ className }: { className?: string }) {
@@ -111,6 +111,29 @@ export default function Footer() {
           <LinkColumn title="Roofing" links={footer.roofingLinks} />
           <LinkColumn title="Other Services" links={footer.serviceLinks} />
           <LinkColumn title="Company" links={footer.companyLinks} />
+        </div>
+
+        {/* Accreditations & accepted payments */}
+        <div className="mt-10 border-t border-white/10 pt-8">
+          <h3 className="text-xs font-bold uppercase tracking-widest text-diamond-white/60">
+            Accredited &amp; Trusted
+          </h3>
+          <ul className="mt-4 flex flex-wrap items-center gap-4">
+            {badges.map((badge) => (
+              <li
+                key={badge.src}
+                className="flex h-16 items-center justify-center rounded-[6px] bg-diamond-white px-4"
+              >
+                <Image
+                  src={badge.src}
+                  alt={badge.alt}
+                  width={badge.width}
+                  height={badge.height}
+                  className="h-10 w-auto"
+                />
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">

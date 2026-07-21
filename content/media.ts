@@ -20,8 +20,8 @@ export const media = {
   // width/height are the file's TRUE intrinsic dimensions.
   logo: {
     src: "/images/diamond-logo.png",
-    width: 1463,
-    height: 553,
+    width: 1500,
+    height: 571,
     alt: "Diamond Home Service logo",
   },
   heroRoof: {
@@ -109,6 +109,29 @@ export const media = {
 
 export type MediaKey = keyof typeof media;
 
+// Accreditation & payment badges (client-supplied, July 2026). Backgrounds
+// flattened to white so they sit cleanly on light badge cards.
+export const badges: MediaAsset[] = [
+  {
+    src: "/images/badge-bbb.png",
+    width: 400,
+    height: 320,
+    alt: "Better Business Bureau Accredited Business — A+ rating",
+  },
+  {
+    src: "/images/badge-energy-star.png",
+    width: 1280,
+    height: 1310,
+    alt: "ENERGY STAR certified",
+  },
+  {
+    src: "/images/badge-payments.png",
+    width: 800,
+    height: 144,
+    alt: "We accept Visa, Mastercard, Discover, and American Express",
+  },
+];
+
 export const heroImage = media.heroRoof;
 
 // Interior page heroes — §3 fallbacks until the Lovable CDN site photos are
@@ -167,7 +190,7 @@ export const roofingServices = {
 };
 
 export const projects = {
-  headline: "Roofing Projects Across Chicagoland",
+  headline: "Recent Projects Across Chicagoland",
   items: [
     {
       image: media.project1,
@@ -176,10 +199,28 @@ export const projects = {
       result: "Full tear-off and new architectural shingle installation.",
     },
     {
+      image: media.serviceSiding,
+      area: "West Suburbs",
+      type: "Siding Replacement",
+      result: "Fresh vinyl siding that won't warp, peel, or need painting.",
+    },
+    {
+      image: media.serviceWindows,
+      area: "Chicago",
+      type: "Window Installation",
+      result: "Energy-efficient replacement windows for lower utility bills.",
+    },
+    {
       image: media.project2,
       area: "South Suburbs",
       type: "Roof Replacement & Gutters",
       result: "New shingle roof paired with seamless gutters.",
+    },
+    {
+      image: media.serviceGutters,
+      area: "North & NW Suburbs",
+      type: "Seamless Gutters",
+      result: "Custom-formed gutters and downspouts to protect the foundation.",
     },
     {
       image: media.project3,
