@@ -3,16 +3,17 @@ import { company } from "@/content/site";
 import UtilityBar from "@/components/UtilityBar";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import FinancingBanner from "@/components/FinancingBanner";
 import TrustBar from "@/components/TrustBar";
 import TrustPillars from "@/components/TrustPillars";
-import RoofingServices from "@/components/RoofingServices";
+import ServicesGrid from "@/components/ServicesGrid";
 import FinancingSection from "@/components/FinancingSection";
 import ProjectGallery from "@/components/ProjectGallery";
 import DiamondDifference from "@/components/DiamondDifference";
 import ProcessSteps from "@/components/ProcessSteps";
 import Reviews from "@/components/Reviews";
+import GoogleReviewBar from "@/components/GoogleReviewBar";
 import ServiceArea from "@/components/ServiceArea";
-import SecondaryServices from "@/components/SecondaryServices";
 import StormCTA from "@/components/StormCTA";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
@@ -81,16 +82,17 @@ export default function Home() {
       <Header />
       <main id="main-content">
         <Hero />
+        <FinancingBanner />
         <TrustBar />
         <TrustPillars />
-        <RoofingServices />
+        <ServicesGrid />
         <FinancingSection />
         <ProjectGallery />
         <DiamondDifference />
         <ProcessSteps />
-        <Reviews />
+        <GoogleReviewBar />
         <ServiceArea />
-        <SecondaryServices />
+        <Reviews />
         <StormCTA />
         <FAQ />
         <FinalCTA />

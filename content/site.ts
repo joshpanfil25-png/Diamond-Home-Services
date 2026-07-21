@@ -49,10 +49,11 @@ export const nav: {
 ];
 
 export const hero = {
-  eyebrow: "ROOFING • REPAIR • STORM RESTORATION",
+  eyebrow: "ROOFING • WINDOWS • SIDING • GUTTERS",
   h1: "Chicagoland's Most Trusted Roofing Company",
   supporting:
     "Protect your home with dependable roofing, honest recommendations, written warranties, and 0% financing from a company that has served Chicagoland homeowners for more than 50 years.",
+  supportingExtra: "Plus windows, siding, gutters, and complete home improvements.",
   primaryCta: "Get a Free Roofing Estimate",
   serviceLine: "Serving Chicago and the entire metropolitan area",
   trustPoints: [
@@ -63,11 +64,36 @@ export const hero = {
 };
 
 export const trustBar = [
-  { label: "50+ Years of Local Experience", icon: "clock" },
-  { label: "Licensed and Bonded", icon: "shield" },
-  { label: "Written Warranties", icon: "file" },
-  { label: "0% Financing Available", icon: "wallet" },
+  {
+    title: "Local Chicagoland Experts",
+    note: "Proudly serving Chicago and the surrounding suburbs.",
+    icon: "pin",
+  },
+  {
+    title: "Insurance Claim Help",
+    note: "We work with your insurance to make it stress-free.",
+    icon: "shield",
+  },
+  {
+    title: "Fast Turnaround",
+    note: "Efficient scheduling and on-time project completion.",
+    icon: "timer",
+  },
+  {
+    title: "Warranty Backed",
+    note: "Industry-leading warranties for lasting peace of mind.",
+    icon: "badge",
+  },
 ];
+
+// Google review summary — client-confirmed values (update as reviews grow).
+export const googleRating = 4.4;
+export const googleReviewCount = 129;
+export const googleFeaturedQuote = {
+  text: "Diamond Home Service did an excellent job on our new roof. The team was professional, on time, and cleaned everything up. Highly recommend!",
+  name: "Michael R.",
+  location: "Orland Park, IL",
+};
 
 export const trustPillars = {
   headline: "Roofing Built on Trust",
@@ -100,7 +126,7 @@ export const diamondDifference = {
     "Written warranties",
     "Quality products",
     "Clear communication",
-    "Flexible financing options",
+    "0% financing options",
     "Free, no-obligation estimates",
   ],
 };
@@ -118,7 +144,7 @@ export const processSteps = {
     },
     {
       title: "Review Materials and Financing",
-      copy: "Choose materials and, if helpful, explore flexible financing options.",
+      copy: "Choose materials and, if helpful, explore 0% financing options.",
     },
     {
       title: "Professional Installation and Cleanup",
@@ -128,17 +154,9 @@ export const processSteps = {
 };
 
 export const serviceArea = {
-  headline: "Serving the Entire Chicago Metropolitan Area",
-  copy: "Diamond Home Service works with homeowners throughout Chicago and the surrounding suburbs, with extensive experience in the South and West suburban communities.",
-  groups: [
-    { title: "Chicago", note: "City neighborhoods and bungalow belt" },
-    { title: "South Suburbs", note: "Extensive local experience" },
-    { title: "West Suburbs", note: "Extensive local experience" },
-    { title: "North & Northwest Suburbs", note: "Serving surrounding communities" },
-  ],
-  // Named towns strengthen local SEO. Drawn from the communities Diamond
-  // serves across Chicago and the South/West/NW suburbs.
-  townsHeading: "Communities We Serve",
+  headline: "Proudly Serving Chicagoland",
+  copy: "From Chicago to the south and west suburbs, we're your local roofing and exterior experts.",
+  // Named towns render as real server-side text for local SEO.
   towns: [
     "Chicago",
     "Naperville",
@@ -148,15 +166,12 @@ export const serviceArea = {
     "Downers Grove",
     "Plainfield",
     "Bolingbrook",
-    "Cicero",
-    "Berwyn",
-    "Oak Park",
-    "Elmhurst",
-    "Evanston",
-    "Schaumburg",
-    "Joliet",
-    "Aurora",
+    "And More",
   ],
+  card: {
+    title: "Local. Reliable. Right Around the Corner.",
+    copy: "Wherever you are in the Chicagoland area, we're ready to help.",
+  },
 };
 
 // Reviews — VERIFIED from uploaded Google review screenshots only.
@@ -206,7 +221,7 @@ export const faqs = {
     },
     {
       q: "Does Diamond Home Service offer financing?",
-      a: "[FOR REVIEW] Yes. We offer flexible financing options for qualified homeowners. Financing is subject to credit approval and available terms may vary.",
+      a: "[FOR REVIEW] Yes. We offer 0% financing for qualified homeowners. Financing is subject to credit approval and available terms may vary.",
     },
     {
       q: "Do you provide free roofing estimates?",
@@ -245,7 +260,7 @@ export const footer = {
     { label: "Windows", href: "/windows" },
     { label: "Siding, Soffit & Fascia", href: "/siding" },
     { label: "Gutters & Downspouts", href: "/gutters" },
-    { label: "Home Improvements", href: "/#more-services" },
+    { label: "Home Improvements", href: "/#services" },
   ],
   companyLinks: [
     { label: "Financing", href: "/#financing" },

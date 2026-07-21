@@ -111,26 +111,76 @@ export type MediaKey = keyof typeof media;
 
 // Accreditation & payment badges (client-supplied, July 2026). Backgrounds
 // flattened to white so they sit cleanly on light badge cards.
-export const badges: MediaAsset[] = [
-  {
+export const paymentBadge: MediaAsset = {
+  src: "/images/badge-payments.png",
+  width: 800,
+  height: 144,
+  alt: "We accept Visa, Mastercard, Discover, and American Express",
+};
+
+// Certification badges shown in the TrustBar certifications row. BBB links to
+// the verified live profile; Lead-Safe stays a text chip until a clean image
+// is supplied.
+export const certifications = {
+  bbb: {
     src: "/images/badge-bbb.png",
     width: 400,
     height: 320,
     alt: "Better Business Bureau Accredited Business — A+ rating",
+    href: "https://www.bbb.org/chicago/business-reviews/construction-and-remodeling-services/diamond-home-service-co-in-chicago-il-4163",
   },
-  {
+  energyStar: {
     src: "/images/badge-energy-star.png",
     width: 1280,
     height: 1310,
     alt: "ENERGY STAR certified",
   },
-  {
-    src: "/images/badge-payments.png",
-    width: 800,
-    height: 144,
-    alt: "We accept Visa, Mastercard, Discover, and American Express",
+  leadSafeLabel: "Lead-Safe Certified",
+};
+
+// Five-card "Our Services" grid (client-approved copy, verbatim).
+export const homeServices = {
+  headline: "Our Services",
+  lead: "Complete exterior solutions to protect and enhance your home.",
+  featured: {
+    title: "Roofing",
+    copy: "Roof replacement, repairs, storm damage and inspections.",
+    image: media.roofReplacement,
+    href: "/roofing",
+    icon: "home",
+    badge: "Most Popular",
   },
-];
+  items: [
+    {
+      title: "Gutters",
+      copy: "Seamless gutters and downspouts that protect your home.",
+      image: media.serviceGutters,
+      href: "/gutters",
+      icon: "droplet",
+    },
+    {
+      title: "Siding",
+      copy: "Beautify and protect with durable, low-maintenance siding options.",
+      image: media.serviceSiding,
+      href: "/siding",
+      icon: "layers",
+    },
+    {
+      title: "Windows",
+      copy: "Energy-efficient windows that improve comfort and lower energy bills.",
+      image: media.serviceWindows,
+      href: "/windows",
+      icon: "window",
+    },
+    {
+      title: "Painting / Exterior",
+      copy: "Professional painting and exterior finishing for lasting curb appeal.",
+      image: media.serviceOther,
+      href: "/#estimate",
+      icon: "paint",
+    },
+  ],
+};
 
 export const heroImage = media.heroRoof;
 

@@ -49,6 +49,9 @@ export default function Hero() {
             <p className="mt-5 max-w-xl text-base sm:text-lg text-diamond-white/85">
               {hero.supporting}
             </p>
+            <p className="mt-2 max-w-xl text-sm font-semibold text-diamond-white/90">
+              {hero.supportingExtra}
+            </p>
 
             <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
               {hero.trustPoints.map((point) => (

@@ -11,6 +11,8 @@ const PROJECT_TYPES = [
   "Roof repair",
   "Storm damage",
   "Free roof inspection",
+  "Windows, siding, or gutters",
+  "Other home improvement",
   "Not sure",
 ] as const;
 
