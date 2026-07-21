@@ -15,16 +15,22 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 bg-diamond-white border-b border-diamond-border">
       <div className="container-diamond flex items-center justify-between gap-4 py-3">
-        {/* Logo — width/height come from the file's TRUE intrinsic dimensions
-            (1463×553); only height is constrained via CSS so the aspect ratio
-            can never distort (fix #1 over the Lovable original). */}
-        <Link href="/" className="flex flex-col shrink-0" aria-label={`${company.name} home`}>
+        {/* Logo — width/height are the file's TRUE intrinsic dimensions
+            (1500×571); height is constrained via CSS and width stays auto.
+            items-start + self-start are REQUIRED: this Link is a flex column,
+            whose default align-items:stretch would otherwise stretch the img
+            to the width of the tagline below it and distort the aspect ratio. */}
+        <Link
+          href="/"
+          className="flex flex-col items-start shrink-0"
+          aria-label={`${company.name} home`}
+        >
           <Image
             src={media.logo.src}
             alt={media.logo.alt}
             width={media.logo.width}
             height={media.logo.height}
-            className="h-11 w-auto sm:h-12"
+            className="h-11 w-auto sm:h-12 self-start"
             preload
           />
           {/* Tagline hidden in the tight lg–xl window so the header never overflows */}
