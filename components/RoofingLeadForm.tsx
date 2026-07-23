@@ -158,7 +158,7 @@ export default function RoofingLeadForm() {
         </h3>
         <p className="mt-2 text-sm text-muted-foreground">
           Thank you, {data.firstName}. A member of our team will reach out about
-          your free roofing estimate. Prefer to talk now?
+          your free estimate. Prefer to talk now?
         </p>
         <CtaButton
           variant="charcoal"
@@ -177,7 +177,7 @@ export default function RoofingLeadForm() {
       <div className="flex items-center gap-2.5">
         <span className="diamond-mark" aria-hidden="true" />
         <h3 className="font-display text-xl font-bold text-diamond-charcoal">
-          Tell Us About Your Roof
+          Tell Us About Your Project
         </h3>
       </div>
       <p className="mt-1 text-sm text-muted-foreground">

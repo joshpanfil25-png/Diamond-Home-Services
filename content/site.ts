@@ -54,7 +54,7 @@ export const hero = {
   supporting:
     "Protect your home with dependable roofing, honest recommendations, written warranties, and 0% financing from a company that has served Chicagoland homeowners for more than 50 years.",
   supportingExtra: "Plus windows, siding, gutters, and complete home improvements.",
-  primaryCta: "Get a Free Roofing Estimate",
+  primaryCta: "Get a Free Estimate",
   serviceLine: "Serving Chicago and the entire metropolitan area",
   trustPoints: [
     "50+ years serving Chicagoland",
