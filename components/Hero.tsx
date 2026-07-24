@@ -46,11 +46,11 @@ export default function Hero() {
             <h1 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
               {hero.h1}
             </h1>
+            <p className="mt-3 font-display text-lg sm:text-xl font-bold text-diamond-white/95">
+              {hero.subhead}
+            </p>
             <p className="mt-5 max-w-xl text-base sm:text-lg text-diamond-white/85">
               {hero.supporting}
-            </p>
-            <p className="mt-2 max-w-xl text-sm font-semibold text-diamond-white/90">
-              {hero.supportingExtra}
             </p>
 
             <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">

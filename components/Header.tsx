@@ -25,12 +25,16 @@ export default function Header() {
           className="flex flex-col items-start shrink-0"
           aria-label={`${company.name} home`}
         >
+          {/* h-14/h-15 renders ~27% larger than the old h-11/h-12; the negative
+              vertical margins cancel the growth in layout (56−12=44, 60−12=48)
+              so the header bar keeps its previous height and the logo simply
+              overlaps the tagline gap. */}
           <Image
             src={media.logo.src}
             alt={media.logo.alt}
             width={media.logo.width}
             height={media.logo.height}
-            className="h-11 w-auto sm:h-12 self-start"
+            className="h-14 w-auto sm:h-15 -my-1.5 self-start"
             preload
           />
           {/* Tagline hidden in the tight lg–xl window so the header never overflows */}

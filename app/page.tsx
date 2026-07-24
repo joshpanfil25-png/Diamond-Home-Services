@@ -81,18 +81,21 @@ export default function Home() {
       <UtilityBar />
       <Header />
       <main id="main-content">
+        {/* DiamondDifference sits right after the financing banner (approved
+            conversion recommendation) — keep this order in sync with the
+            Round 2 spec. */}
         <Hero />
         <FinancingBanner />
+        <DiamondDifference />
         <TrustBar />
         <TrustPillars />
         <ServicesGrid />
         <FinancingSection />
         <ProjectGallery />
-        <DiamondDifference />
         <ProcessSteps />
         <GoogleReviewBar />
-        <ServiceArea />
         <Reviews />
+        <ServiceArea />
         <StormCTA />
         <FAQ />
         <FinalCTA />

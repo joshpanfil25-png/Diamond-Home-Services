@@ -1,5 +1,5 @@
 import { Quote, Star } from "lucide-react";
-import { reviews } from "@/content/site";
+import { googleBusinessProfileUrl, reviews } from "@/content/site";
 import CtaButton from "@/components/CtaButton";
 
 export default function Reviews() {
@@ -61,7 +61,7 @@ export default function Reviews() {
 
         <div className="mt-8">
           <CtaButton
-            href="https://www.google.com/search?q=Diamond+Home+Service+Chicago+reviews"
+            href={googleBusinessProfileUrl}
             variant="outline"
             target="_blank"
             rel="noopener noreferrer"

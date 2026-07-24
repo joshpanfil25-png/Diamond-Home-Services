@@ -7,13 +7,15 @@ import { company } from "@/content/site";
 import CtaButton from "@/components/CtaButton";
 
 const PROJECT_TYPES = [
-  "Roof replacement",
-  "Roof repair",
-  "Storm damage",
-  "Free roof inspection",
-  "Windows, siding, or gutters",
-  "Other home improvement",
-  "Not sure",
+  "Roofing",
+  "Windows",
+  "Gutters",
+  "Siding",
+  "Storm Damage",
+  "Bathroom",
+  "Flooring",
+  "Other Home Improvement",
+  "Not Sure",
 ] as const;
 
 const CONTACT_METHODS = ["Phone", "Email", "Either"] as const;

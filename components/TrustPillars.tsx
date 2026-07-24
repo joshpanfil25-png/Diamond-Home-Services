@@ -21,7 +21,12 @@ export default function TrustPillars() {
           <h2 className="mt-3 font-display text-3xl sm:text-4xl font-extrabold text-diamond-charcoal">
             {trustPillars.headline}
           </h2>
-          <p className="mt-4 text-lg text-diamond-charcoal/80">{trustPillars.copy}</p>
+          <p className="mt-4 text-lg text-diamond-charcoal/80">
+            <strong className="font-bold text-diamond-charcoal">
+              {trustPillars.copyLead}
+            </strong>{" "}
+            {trustPillars.copy}
+          </p>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">

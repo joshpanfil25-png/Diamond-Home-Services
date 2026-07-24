@@ -50,10 +50,10 @@ export const nav: {
 
 export const hero = {
   eyebrow: "ROOFING • WINDOWS • SIDING • GUTTERS",
-  h1: "Chicagoland's Most Trusted Roofing Company",
+  h1: "Chicagoland's Most Trusted Roofing & Home Improvement Company",
+  subhead: "Family Owned for Over 50 Years",
   supporting:
-    "Protect your home with dependable roofing, honest recommendations, written warranties, and 0% financing from a company that has served Chicagoland homeowners for more than 50 years.",
-  supportingExtra: "Plus windows, siding, gutters, and complete home improvements.",
+    "Whether you're replacing your roof or transforming your home, Diamond Home Service delivers expert craftsmanship you can trust. We specialize in roofing, siding, windows, and gutters while also providing beautiful kitchen, bathroom, and flooring renovations—all backed by honest recommendations, written warranties, and flexible 0% financing.",
   primaryCta: "Get a Free Estimate",
   serviceLine: "Serving Chicago and the entire metropolitan area",
   trustPoints: [
@@ -95,24 +95,32 @@ export const googleFeaturedQuote = {
   location: "Orland Park, IL",
 };
 
+// [CONFIRM: exact GBP link] — could not confidently identify the exact Google
+// Business Profile share link; using a Maps search URL that resolves to the
+// listing until the client confirms the official link.
+export const googleBusinessProfileUrl =
+  "https://www.google.com/maps/search/?api=1&query=Diamond+Home+Service+5015+W+Lawrence+Ave+Chicago";
+
 export const trustPillars = {
   headline: "Roofing Built on Trust",
-  copy: "A roof is more than shingles. It protects your family, your belongings, and the value of your home. Diamond Home Service combines decades of local experience with straightforward recommendations, dependable installation, and financing options designed to make necessary home improvements more manageable.",
+  // copyLead renders bold, copy follows in the same paragraph.
+  copyLead: "A roof is more than shingles.",
+  copy: "It protects your family, your home, and one of your biggest investments. That's why Diamond Home Service combines more than 50 years of experience with honest recommendations, expert craftsmanship, quality materials, and financing options that make protecting your home more affordable.",
   pillars: [
     {
       icon: "handshake",
       title: "Honest Recommendations",
-      copy: "Clear explanations and written estimates without unnecessary pressure.",
+      copy: "We explain your options clearly, provide written estimates, and recommend only the work your home actually needs.",
     },
     {
       icon: "hammer",
       title: "Quality Craftsmanship",
-      copy: "Experienced installation using dependable materials and proven methods.",
+      copy: "Our experienced crews install every roof with precision using trusted materials and proven installation methods built to last.",
     },
     {
       icon: "phone-call",
       title: "Service After Installation",
-      copy: "A local team homeowners can contact before, during, and after the project.",
+      copy: "Our commitment doesn't end when the job is finished. As a local company, we're here before, during, and long after your project is complete.",
     },
   ],
 };
@@ -156,22 +164,86 @@ export const processSteps = {
 export const serviceArea = {
   headline: "Proudly Serving Chicagoland",
   copy: "From Chicago to the south and west suburbs, we're your local roofing and exterior experts.",
-  // Named towns render as real server-side text for local SEO.
-  towns: [
-    "Chicago",
-    "Naperville",
-    "Orland Park",
-    "Oak Lawn",
-    "Tinley Park",
-    "Downers Grove",
-    "Plainfield",
-    "Bolingbrook",
-    "And More",
-  ],
   card: {
     title: "Local. Reliable. Right Around the Corner.",
     copy: "Wherever you are in the Chicagoland area, we're ready to help.",
   },
+};
+
+// Coverage regions + towns, grouped so the full town list the client will
+// send later drops straight in. Towns render as real server-side text for
+// local SEO; the map draws the coverage shape over these regions.
+export const serviceAreaTowns: { region: string; towns: string[] }[] = [
+  { region: "Chicago", towns: ["Chicago"] },
+  { region: "North Shore", towns: [] },
+  { region: "Northwest suburbs", towns: [] },
+  { region: "West suburbs", towns: ["Naperville", "Downers Grove", "Bolingbrook"] },
+  { region: "Southwest suburbs", towns: ["Orland Park", "Tinley Park", "Plainfield"] },
+  { region: "South suburbs", towns: ["Oak Lawn"] },
+  { region: "Waukegan area", towns: [] },
+  { region: "Northwest Indiana", towns: [] },
+];
+
+// Representative project narratives — client to review/replace with real job details before launch.
+// Keyed by index to match content/media.ts projects.items order. Narratives are
+// third-person and anonymous; products use generic phrasing (no brand names).
+export const projects = {
+  items: [
+    {
+      // Chicago — Roof Replacement (project1: two-story, dark gray shingles)
+      problem:
+        "The homeowner noticed a leak after several heavy spring storms. An inspection revealed missing shingles and deteriorated flashing around the chimney.",
+      solution:
+        "We completed a full tear-off and architectural roof replacement, upgraded the chimney flashing system, and restored complete weather protection.",
+      products: "Architectural asphalt shingles, synthetic underlayment, new chimney flashing",
+      timeline: "Completed in 1 day",
+    },
+    {
+      // West Suburbs — Siding Replacement (faded vinyl siding)
+      problem:
+        "Decades-old siding had faded unevenly and several panels were warping, leaving gaps that let moisture reach the sheathing.",
+      solution:
+        "We removed the old siding, repaired the affected sheathing, and installed durable vinyl siding with matching trim for a clean, low-maintenance exterior.",
+      products: "Insulated vinyl siding panels, moisture barrier wrap, color-matched trim",
+      timeline: "Completed in 3 days",
+    },
+    {
+      // Chicago — Window Installation (drafty windows)
+      problem:
+        "Drafty original windows made rooms uncomfortable in winter and drove up heating bills, and the aging sashes no longer opened smoothly.",
+      solution:
+        "We replaced the failing units with custom-measured, energy-efficient vinyl windows sealed and insulated at every opening.",
+      products: "Double-pane vinyl replacement windows with Low-E glass",
+      timeline: "Completed in 2 days",
+    },
+    {
+      // South Suburbs — Roof Replacement & Gutters (brown shingles + gutters)
+      problem:
+        "An aging roof was shedding granules and the undersized gutters overflowed during storms, spilling water next to the foundation.",
+      solution:
+        "We installed a new shingle roof and paired it with correctly sized seamless gutters and downspouts routed away from the house.",
+      products: "Architectural asphalt shingles, seamless aluminum gutters and downspouts",
+      timeline: "Completed in 2 days",
+    },
+    {
+      // North & NW Suburbs — Seamless Gutters
+      problem:
+        "Leaking, sagging sectional gutters were staining the siding and allowing water to pool near the foundation after every rain.",
+      solution:
+        "We custom-formed seamless gutters on-site to the exact rooflines and added downspout extensions to move water well away from the home.",
+      products: "Seamless aluminum gutters, oversized downspouts with splash extensions",
+      timeline: "Completed in 1 day",
+    },
+    {
+      // West Suburbs — Roof Replacement (brick two-flat, charcoal shingles)
+      problem:
+        "The two-flat's original roof had reached the end of its service life, with curling shingles and worn flashing at the parapet walls.",
+      solution:
+        "We completed a full replacement with durable charcoal shingles and new flashing details fitted to the classic brick architecture.",
+      products: "Architectural asphalt shingles, ice and water shield, new edge flashing",
+      timeline: "Completed in 1 day",
+    },
+  ],
 };
 
 // Reviews — VERIFIED from uploaded Google review screenshots only.

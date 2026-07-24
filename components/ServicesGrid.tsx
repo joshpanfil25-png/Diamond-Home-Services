@@ -3,10 +3,10 @@ import Link from "next/link";
 import {
   AppWindow,
   ArrowRight,
+  Bath,
   Droplets,
   Home,
   Layers,
-  PaintRoller,
 } from "lucide-react";
 import { homeServices } from "@/content/media";
 
@@ -15,7 +15,7 @@ const iconMap = {
   droplet: Droplets,
   layers: Layers,
   window: AppWindow,
-  paint: PaintRoller,
+  bath: Bath,
 } as const;
 
 export default function ServicesGrid() {

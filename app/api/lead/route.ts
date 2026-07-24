@@ -12,14 +12,17 @@ import { z } from "zod";
 // See .env.example.
 // ---------------------------------------------------------------------------
 
+// Must match PROJECT_TYPES in components/RoofingLeadForm.tsx exactly.
 const PROJECT_TYPES = [
-  "Roof replacement",
-  "Roof repair",
-  "Storm damage",
-  "Free roof inspection",
-  "Windows, siding, or gutters",
-  "Other home improvement",
-  "Not sure",
+  "Roofing",
+  "Windows",
+  "Gutters",
+  "Siding",
+  "Storm Damage",
+  "Bathroom",
+  "Flooring",
+  "Other Home Improvement",
+  "Not Sure",
 ] as const;
 
 const CONTACT_METHODS = ["Phone", "Email", "Either"] as const;
@@ -113,7 +116,7 @@ async function forwardLead(lead: Lead, submittedAt: string): Promise<void> {
       body: JSON.stringify({
         from: "Diamond Home Service Website <leads@diamondhomeservice.com>",
         to: [toEmail],
-        subject: `New roofing lead: ${lead.firstName} ${lead.lastName} (${lead.zip})`,
+        subject: `New ${lead.projectType} lead: ${lead.firstName} ${lead.lastName} (${lead.zip})`,
         text: lines.join("\n"),
       }),
     });

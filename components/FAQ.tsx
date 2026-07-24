@@ -53,7 +53,9 @@ export default function FAQ() {
                     aria-labelledby={`faq-btn-${i}`}
                     className="pb-5 text-diamond-charcoal/80"
                   >
-                    {item.a}
+                    {/* [FOR REVIEW] markers stay in content/site.ts for the
+                        client's pass but must never reach visitors. */}
+                    {item.a.replace(/^\[FOR REVIEW\]\s*/, "")}
                   </div>
                 )}
               </div>

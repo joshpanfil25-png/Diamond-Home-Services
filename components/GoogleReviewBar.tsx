@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { Quote, Star, StarHalf } from "lucide-react";
+import { ArrowRight, Quote, Star, StarHalf } from "lucide-react";
 import {
+  googleBusinessProfileUrl,
   googleFeaturedQuote,
   googleRating,
   googleReviewCount,
@@ -53,28 +54,45 @@ export default function GoogleReviewBar() {
 
       <div className="container-diamond relative py-8 lg:py-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-8">
-          {/* Rating */}
-          <div className="flex items-center gap-4 md:pr-8">
-            <GoogleG className="h-9 w-9 shrink-0" />
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-display text-3xl font-extrabold">
-                  {googleRating.toFixed(1)}
-                </span>
-                <span className="flex items-center" aria-hidden="true">
-                  {[0, 1, 2, 3].map((i) => (
-                    <Star
-                      key={i}
-                      className="h-4 w-4 fill-diamond-red text-diamond-red"
-                    />
-                  ))}
-                  <StarHalf className="h-4 w-4 fill-diamond-red text-diamond-red" />
-                </span>
+          {/* Rating — links to the Google Business Profile reviews page */}
+          <div className="md:pr-8">
+            <a
+              href={googleBusinessProfileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 rounded-[6px] focus:outline-none focus-visible:ring-2 focus-visible:ring-diamond-red"
+              aria-label={`${googleRating.toFixed(1)} stars from ${googleReviewCount} Google reviews — read them on Google`}
+            >
+              <GoogleG className="h-9 w-9 shrink-0" />
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="font-display text-3xl font-extrabold">
+                    {googleRating.toFixed(1)}
+                  </span>
+                  <span className="flex items-center" aria-hidden="true">
+                    {[0, 1, 2, 3].map((i) => (
+                      <Star
+                        key={i}
+                        className="h-4 w-4 fill-diamond-red text-diamond-red"
+                      />
+                    ))}
+                    <StarHalf className="h-4 w-4 fill-diamond-red text-diamond-red" />
+                  </span>
+                </div>
+                <p className="mt-0.5 text-sm text-diamond-white/70 group-hover:text-diamond-white">
+                  {googleReviewCount} Google Reviews
+                </p>
               </div>
-              <p className="mt-0.5 text-sm text-diamond-white/70">
-                {googleReviewCount} Google Reviews
-              </p>
-            </div>
+            </a>
+            <a
+              href={googleBusinessProfileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-diamond-red hover:text-diamond-white"
+            >
+              Read More Reviews
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
           </div>
 
           {/* Divider */}

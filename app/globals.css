@@ -72,6 +72,21 @@ h6 {
   outline-offset: 2px;
 }
 
+/* Leaflet town labels on the service-area map */
+.service-area-town-label {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #2d2d2e;
+}
+.service-area-town-label::before {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

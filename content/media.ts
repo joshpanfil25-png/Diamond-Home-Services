@@ -152,11 +152,11 @@ export const homeServices = {
   },
   items: [
     {
-      title: "Gutters",
-      copy: "Seamless gutters and downspouts that protect your home.",
-      image: media.serviceGutters,
-      href: "/gutters",
-      icon: "droplet",
+      title: "Windows",
+      copy: "Energy-efficient windows that improve comfort and lower energy bills.",
+      image: media.serviceWindows,
+      href: "/windows",
+      icon: "window",
     },
     {
       title: "Siding",
@@ -166,18 +166,19 @@ export const homeServices = {
       icon: "layers",
     },
     {
-      title: "Windows",
-      copy: "Energy-efficient windows that improve comfort and lower energy bills.",
-      image: media.serviceWindows,
-      href: "/windows",
-      icon: "window",
+      title: "Gutters",
+      copy: "Seamless gutters and downspouts that protect your home.",
+      image: media.serviceGutters,
+      href: "/gutters",
+      icon: "droplet",
     },
     {
-      title: "Painting / Exterior",
-      copy: "Professional painting and exterior finishing for lasting curb appeal.",
+      // No dedicated page yet — routes to the estimate flow.
+      title: "Bathrooms & More",
+      copy: "Complete bathroom remodels, kitchens, flooring, and more home improvement services.",
       image: media.serviceOther,
       href: "/#estimate",
-      icon: "paint",
+      icon: "bath",
     },
   ],
 };

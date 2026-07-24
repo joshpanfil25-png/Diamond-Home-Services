@@ -38,8 +38,9 @@ export default function TrustBar() {
           })}
         </div>
 
-        {/* Certifications — verified badges from the live business profile. */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-4 border-t border-diamond-border pt-5">
+        {/* Certifications — verified badges from the live business profile.
+            Rendered at 2x (h-16 logos) so they read as trust anchors. */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 border-t border-diamond-border pt-5">
           <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Certifications:
           </span>
@@ -47,7 +48,7 @@ export default function TrustBar() {
             href={certifications.bbb.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-12 items-center rounded-[6px] border border-diamond-border bg-diamond-white px-3"
+            className="inline-flex h-20 items-center rounded-[6px] border border-diamond-border bg-diamond-white px-4"
             aria-label="Better Business Bureau A+ rated — view profile"
           >
             <Image
@@ -55,20 +56,20 @@ export default function TrustBar() {
               alt={certifications.bbb.alt}
               width={certifications.bbb.width}
               height={certifications.bbb.height}
-              className="h-8 w-auto"
+              className="h-16 w-auto"
             />
           </a>
-          <span className="inline-flex h-12 items-center rounded-[6px] border border-diamond-border bg-diamond-white px-3">
+          <span className="inline-flex h-20 items-center rounded-[6px] border border-diamond-border bg-diamond-white px-4">
             <Image
               src={certifications.energyStar.src}
               alt={certifications.energyStar.alt}
               width={certifications.energyStar.width}
               height={certifications.energyStar.height}
-              className="h-8 w-auto"
+              className="h-16 w-auto"
             />
           </span>
-          <span className="inline-flex items-center gap-2 rounded-[6px] border border-diamond-border px-3 py-2 text-xs font-semibold text-diamond-charcoal">
-            <ShieldAlert className="h-4 w-4 text-diamond-red" aria-hidden="true" />
+          <span className="inline-flex h-20 items-center gap-3 rounded-[6px] border border-diamond-border px-4 text-base font-semibold text-diamond-charcoal">
+            <ShieldAlert className="h-8 w-8 text-diamond-red" aria-hidden="true" />
             {certifications.leadSafeLabel}
           </span>
         </div>
