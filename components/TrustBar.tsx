@@ -16,20 +16,23 @@ export default function TrustBar() {
       aria-label="Why homeowners trust us"
       className="bg-diamond-white border-b border-diamond-border"
     >
-      <div className="container-diamond py-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {/* Full-bleed band: the section background runs edge to edge while the
+          content keeps a wide max-width inside. Sized as a major band, not a
+          thin row (Round 3). */}
+      <div className="mx-auto w-full max-w-[1440px] px-5 py-10 lg:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
           {trustBar.map((item) => {
             const Icon = iconMap[item.icon as keyof typeof iconMap];
             return (
-              <div key={item.title} className="flex items-start gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[6px] bg-diamond-warm">
-                  <Icon className="h-5 w-5 text-diamond-red" aria-hidden="true" />
+              <div key={item.title} className="flex items-start gap-4">
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[8px] bg-diamond-warm">
+                  <Icon className="h-8 w-8 text-diamond-red" aria-hidden="true" />
                 </span>
                 <span>
-                  <span className="block text-sm font-bold text-diamond-charcoal leading-tight">
+                  <span className="block text-base lg:text-lg font-bold text-diamond-charcoal leading-tight">
                     {item.title}
                   </span>
-                  <span className="mt-0.5 block text-xs text-muted-foreground leading-snug">
+                  <span className="mt-1 block text-sm text-muted-foreground leading-snug">
                     {item.note}
                   </span>
                 </span>
@@ -44,11 +47,13 @@ export default function TrustBar() {
           <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Certifications:
           </span>
+          {/* Images fill their boxes (object-contain, minimal padding) instead
+              of sitting small inside oversized containers. */}
           <a
             href={certifications.bbb.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-20 items-center rounded-[6px] border border-diamond-border bg-diamond-white px-4"
+            className="inline-flex h-20 items-center rounded-[6px] border border-diamond-border bg-diamond-white p-1"
             aria-label="Better Business Bureau A+ rated — view profile"
           >
             <Image
@@ -56,16 +61,16 @@ export default function TrustBar() {
               alt={certifications.bbb.alt}
               width={certifications.bbb.width}
               height={certifications.bbb.height}
-              className="h-16 w-auto"
+              className="h-full w-auto object-contain"
             />
           </a>
-          <span className="inline-flex h-20 items-center rounded-[6px] border border-diamond-border bg-diamond-white px-4">
+          <span className="inline-flex h-20 items-center rounded-[6px] border border-diamond-border bg-diamond-white p-1">
             <Image
               src={certifications.energyStar.src}
               alt={certifications.energyStar.alt}
               width={certifications.energyStar.width}
               height={certifications.energyStar.height}
-              className="h-16 w-auto"
+              className="h-full w-auto object-contain"
             />
           </span>
           <span className="inline-flex h-20 items-center gap-3 rounded-[6px] border border-diamond-border px-4 text-base font-semibold text-diamond-charcoal">

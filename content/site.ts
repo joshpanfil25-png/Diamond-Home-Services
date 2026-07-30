@@ -170,18 +170,59 @@ export const serviceArea = {
   },
 };
 
-// Coverage regions + towns, grouped so the full town list the client will
-// send later drops straight in. Towns render as real server-side text for
-// local SEO; the map draws the coverage shape over these regions.
+// Client-supplied region/town list (Round 3, verbatim). Rendered as an
+// accordion whose contents stay server-rendered in the DOM for local SEO.
+// Chicago itself is the core service area and is represented in the section
+// copy and on the map, not in this suburbs-only list.
 export const serviceAreaTowns: { region: string; towns: string[] }[] = [
-  { region: "Chicago", towns: ["Chicago"] },
-  { region: "North Shore", towns: [] },
-  { region: "Northwest suburbs", towns: [] },
-  { region: "West suburbs", towns: ["Naperville", "Downers Grove", "Bolingbrook"] },
-  { region: "Southwest suburbs", towns: ["Orland Park", "Tinley Park", "Plainfield"] },
-  { region: "South suburbs", towns: ["Oak Lawn"] },
-  { region: "Waukegan area", towns: [] },
-  { region: "Northwest Indiana", towns: [] },
+  {
+    region: "North Shore",
+    towns: [
+      "Evanston", "Wilmette", "Kenilworth", "Winnetka", "Glencoe",
+      "Highland Park", "Highwood", "Deerfield", "Northbrook", "Glenview",
+    ],
+  },
+  {
+    region: "Northern Suburbs",
+    towns: [
+      "Waukegan", "Gurnee", "Libertyville", "Vernon Hills", "Lake Forest",
+      "Lake Bluff", "Mundelein", "Grayslake", "Buffalo Grove", "Lincolnshire",
+    ],
+  },
+  {
+    region: "Northwest Suburbs",
+    towns: [
+      "Arlington Heights", "Mount Prospect", "Prospect Heights", "Des Plaines",
+      "Park Ridge", "Niles", "Morton Grove", "Skokie", "Rolling Meadows",
+      "Palatine", "Schaumburg", "Elk Grove Village", "Hoffman Estates",
+      "Streamwood", "Barrington",
+    ],
+  },
+  {
+    region: "Western Suburbs",
+    towns: [
+      "Oak Brook", "Hinsdale", "Clarendon Hills", "Burr Ridge", "Elmhurst",
+      "Lombard", "Villa Park", "Glen Ellyn", "Wheaton", "Carol Stream",
+      "West Chicago", "Winfield", "Lisle", "Downers Grove", "Woodridge",
+      "Darien",
+    ],
+  },
+  {
+    region: "Southwest Suburbs",
+    towns: [
+      "Naperville", "Bolingbrook", "Plainfield", "Romeoville", "Lemont",
+      "Lockport", "Homer Glen", "Orland Park", "Tinley Park", "Frankfort",
+      "Mokena", "New Lenox",
+    ],
+  },
+  {
+    region: "South Suburbs",
+    towns: [
+      "Oak Lawn", "Evergreen Park", "Burbank", "Bridgeview", "Palos Hills",
+      "Palos Heights", "Palos Park", "Hickory Hills", "Alsip", "Crestwood",
+      "Midlothian", "Blue Island", "Homewood", "Flossmoor", "Chicago Heights",
+    ],
+  },
 ];
 
 // Representative project narratives — client to review/replace with real job details before launch.

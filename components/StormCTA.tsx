@@ -4,7 +4,7 @@ import CtaButton from "@/components/CtaButton";
 
 export default function StormCTA() {
   return (
-    <section id="storm" className="relative bg-diamond-charcoal text-diamond-white scroll-mt-20">
+    <section id="storm" className="relative bg-diamond-charcoal text-diamond-white scroll-mt-32">
       {/* Red roofline edge */}
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-diamond-red" aria-hidden="true" />
       <div className="container-diamond py-14 lg:py-16">

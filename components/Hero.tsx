@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <section
       id="estimate"
-      className="relative isolate overflow-hidden bg-diamond-charcoal scroll-mt-20"
+      className="relative isolate overflow-hidden bg-diamond-charcoal scroll-mt-32"
     >
       {/* Background image */}
       <Image

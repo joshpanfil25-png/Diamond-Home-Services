@@ -5,7 +5,7 @@ import { secondaryServices } from "@/content/media";
 
 export default function SecondaryServices() {
   return (
-    <section id="more-services" className="bg-diamond-warm scroll-mt-20">
+    <section id="more-services" className="bg-diamond-warm scroll-mt-32">
       <div className="container-diamond py-16 lg:py-20">
         <div className="max-w-3xl">
           <div className="flex items-center gap-2">

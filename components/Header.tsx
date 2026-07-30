@@ -14,7 +14,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-diamond-white border-b border-diamond-border">
-      <div className="container-diamond flex items-center justify-between gap-4 py-3">
+      <div className="container-diamond flex items-center justify-between gap-4 py-2">
         {/* Logo — width/height are the file's TRUE intrinsic dimensions
             (1500×571); height is constrained via CSS and width stays auto.
             items-start + self-start are REQUIRED: this Link is a flex column,
@@ -25,16 +25,16 @@ export default function Header() {
           className="flex flex-col items-start shrink-0"
           aria-label={`${company.name} home`}
         >
-          {/* h-14/h-15 renders ~27% larger than the old h-11/h-12; the negative
-              vertical margins cancel the growth in layout (56−12=44, 60−12=48)
-              so the header bar keeps its previous height and the logo simply
-              overlaps the tagline gap. */}
+          {/* Round 3: +40% from the previous h-14/h-15 (56→78px, 60→84px).
+              At this size the logo can't hide inside the old bar height, so
+              the header grows the minimum necessary; the outer flex row keeps
+              it vertically centered against the nav. */}
           <Image
             src={media.logo.src}
             alt={media.logo.alt}
             width={media.logo.width}
             height={media.logo.height}
-            className="h-14 w-auto sm:h-15 -my-1.5 self-start"
+            className="h-[78px] w-auto sm:h-[84px] self-start"
             preload
           />
           {/* Tagline hidden in the tight lg–xl window so the header never overflows */}

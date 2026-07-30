@@ -4,7 +4,7 @@ import CtaButton from "@/components/CtaButton";
 
 export default function DiamondDifference() {
   return (
-    <section id="difference" className="bg-diamond-charcoal text-diamond-white scroll-mt-20">
+    <section id="difference" className="bg-diamond-charcoal text-diamond-white scroll-mt-32">
       <div className="container-diamond py-16 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">
           <div>
@@ -18,7 +18,10 @@ export default function DiamondDifference() {
               {diamondDifference.headline}
             </h2>
             <p className="mt-4 text-diamond-white/80">
-              For more than 50 years, Chicagoland homeowners have trusted Diamond Home Service for
+              <strong className="font-bold text-diamond-white">
+                For more than 50 years,
+              </strong>{" "}
+              Chicagoland homeowners have trusted Diamond Home Service for
               honest recommendations and dependable workmanship.
             </p>
             <CtaButton href="#estimate" variant="red" className="mt-6">

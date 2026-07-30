@@ -5,11 +5,13 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { serviceAreaTowns } from "@/content/site";
 
-// Coordinates for named service-area towns. Towns from content/site.ts without
-// an entry here simply render no marker (the chip list still shows them), so
-// the client's future full town list drops in without breaking the map.
+// Marker coordinates for a readable subset of service-area towns. Towns from
+// content/site.ts without an entry here simply render no marker (the accordion
+// still lists them), so the client's list can grow without breaking the map.
 const TOWN_COORDS: Record<string, [number, number]> = {
-  Chicago: [41.8781, -87.6298],
+  Waukegan: [42.3636, -87.8448],
+  Evanston: [42.0451, -87.6877],
+  Schaumburg: [42.0334, -88.0834],
   Naperville: [41.7508, -88.1535],
   "Orland Park": [41.6303, -87.8539],
   "Oak Lawn": [41.7109, -87.7581],
@@ -19,21 +21,31 @@ const TOWN_COORDS: Record<string, [number, number]> = {
   Bolingbrook: [41.6986, -88.0684],
 };
 
-// Translucent red coverage ellipse spanning the eight service regions:
-// Chicago, North Shore, NW suburbs, west suburbs, SW suburbs, south suburbs,
-// the Waukegan area (north), and Northwest Indiana (southeast).
-function coverageEllipse(): L.LatLngExpression[] {
-  const cy = 41.9;
-  const cx = -87.85;
-  const ry = 0.5;
-  const rx = 0.55;
-  const points: L.LatLngExpression[] = [];
-  for (let i = 0; i < 64; i++) {
-    const t = (i / 64) * 2 * Math.PI;
-    points.push([cy + ry * Math.sin(t), cx + rx * Math.cos(t)]);
-  }
-  return points;
-}
+// Chicago is the core service area — always marked even though the client's
+// region list is suburbs-only.
+const CHICAGO: [number, number] = [41.8781, -87.6298];
+
+// Round 3 coverage shape: hugs the Lake Michigan shore on the east, reaches
+// Waukegan/Gurnee north, Barrington/West Chicago west, and New Lenox/Chicago
+// Heights south. Northwest Indiana is intentionally excluded.
+const COVERAGE: L.LatLngExpression[] = [
+  [42.4, -87.87], // Waukegan/Gurnee north
+  [42.36, -87.8], // shore at Waukegan
+  [42.05, -87.66], // Evanston shore
+  [41.88, -87.6], // Chicago loop shore
+  [41.73, -87.52], // south lakefront
+  [41.62, -87.53], // Calumet edge (Illinois side only)
+  [41.48, -87.62], // Chicago Heights south
+  [41.47, -87.85], // Frankfort/Mokena south
+  [41.5, -88.0], // New Lenox south
+  [41.58, -88.12], // Lockport southwest
+  [41.7, -88.22], // Plainfield west
+  [41.88, -88.26], // West Chicago west
+  [42.08, -88.2], // toward Barrington
+  [42.18, -88.13], // Barrington northwest
+  [42.32, -88.0], // Grayslake
+  [42.4, -87.95], // back to the north edge
+];
 
 export default function LeafletMap() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -46,10 +58,11 @@ export default function LeafletMap() {
       attributionControl: true,
     });
 
-    // Initial view: Waukegan (N) to Northwest Indiana (SE) to the west suburbs.
+    // Initial view: Waukegan (N) to New Lenox/Chicago Heights (S) to the
+    // western suburbs — Illinois only.
     map.fitBounds([
-      [42.4, -88.35],
-      [41.42, -87.25],
+      [42.45, -88.32],
+      [41.44, -87.45],
     ]);
 
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -58,7 +71,7 @@ export default function LeafletMap() {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    L.polygon(coverageEllipse(), {
+    L.polygon(COVERAGE, {
       color: "#c72127",
       weight: 1.5,
       opacity: 0.5,
@@ -67,24 +80,28 @@ export default function LeafletMap() {
       interactive: false,
     }).addTo(map);
 
+    function addMarker(coords: [number, number], label: string) {
+      L.circleMarker(coords, {
+        radius: 6,
+        color: "#ffffff",
+        weight: 2,
+        fillColor: "#c72127",
+        fillOpacity: 1,
+      })
+        .bindTooltip(label, {
+          permanent: true,
+          direction: "bottom",
+          offset: [0, 6],
+          className: "service-area-town-label",
+        })
+        .addTo(map);
+    }
+
+    addMarker(CHICAGO, "Chicago");
     for (const { towns } of serviceAreaTowns) {
       for (const town of towns) {
         const coords = TOWN_COORDS[town];
-        if (!coords) continue;
-        L.circleMarker(coords, {
-          radius: 6,
-          color: "#ffffff",
-          weight: 2,
-          fillColor: "#c72127",
-          fillOpacity: 1,
-        })
-          .bindTooltip(town, {
-            permanent: true,
-            direction: "bottom",
-            offset: [0, 6],
-            className: "service-area-town-label",
-          })
-          .addTo(map);
+        if (coords) addMarker(coords, town);
       }
     }
 

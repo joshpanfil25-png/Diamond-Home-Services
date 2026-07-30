@@ -23,7 +23,7 @@ export default function ServicesGrid() {
   const FeaturedIcon = iconMap[featured.icon as keyof typeof iconMap];
 
   return (
-    <section id="services" className="bg-diamond-white scroll-mt-24">
+    <section id="services" className="bg-diamond-white scroll-mt-32">
       <div className="container-diamond py-16 lg:py-20">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-diamond-charcoal">

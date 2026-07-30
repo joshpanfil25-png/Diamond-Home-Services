@@ -5,7 +5,7 @@ import { roofingServices } from "@/content/media";
 export default function RoofingServices() {
   const { headline, featured, supporting } = roofingServices;
   return (
-    <section id="roofing" className="bg-diamond-white scroll-mt-24">
+    <section id="roofing" className="bg-diamond-white scroll-mt-32">
       <div className="container-diamond py-16 lg:py-20">
         <div className="max-w-3xl">
           <div className="flex items-center gap-2">

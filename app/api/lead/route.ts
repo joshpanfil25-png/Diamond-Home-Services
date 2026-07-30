@@ -1,14 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { forwardLead } from "@/lib/lead";
 
 // ---------------------------------------------------------------------------
 // POST /api/lead — receives estimate-form submissions.
 //
 // Validation mirrors the client-side rules in RoofingLeadForm exactly, then
-// the lead is forwarded to the first configured destination:
-//   1. LEAD_WEBHOOK_URL          → POST the JSON there (Zapier/Make/CRM webhook)
-//   2. RESEND_API_KEY + LEAD_TO_EMAIL → formatted lead email via Resend
-//   3. (dev fallback)            → log to the server console
+// the lead is forwarded via lib/lead.ts:
+//   1. RESEND_API_KEY → formatted email to LEAD_TO_EMAIL
+//      (default info@diamondhomeservice.com), reply-to the homeowner
+//   2. LEAD_WEBHOOK_URL → POST the JSON there (Zapier/Make/CRM webhook)
+//   3. (neither) → prominent server warning; lead only logged
 // See .env.example.
 // ---------------------------------------------------------------------------
 
@@ -43,8 +45,6 @@ const leadSchema = z.object({
   utm: z.record(z.string(), z.string().max(500)).optional(),
 });
 
-type Lead = z.infer<typeof leadSchema>;
-
 // Simple in-memory rate limit: max 5 requests per IP per 10 minutes.
 // Good enough for a single-instance deployment; swap for a shared store
 // (e.g. Upstash) if this ever runs on multiple instances.
@@ -68,64 +68,6 @@ function rateLimited(ip: string): boolean {
     }
   }
   return false;
-}
-
-async function forwardLead(lead: Lead, submittedAt: string): Promise<void> {
-  const payload = {
-    ...lead,
-    company: undefined, // never forward the honeypot field
-    submittedAt,
-    source: "diamondhomeservice.com estimate form",
-  };
-
-  const webhookUrl = process.env.LEAD_WEBHOOK_URL;
-  if (webhookUrl) {
-    const res = await fetch(webhookUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    if (!res.ok) throw new Error(`Webhook responded ${res.status}`);
-    return;
-  }
-
-  const resendKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.LEAD_TO_EMAIL;
-  if (resendKey && toEmail) {
-    const lines = [
-      `New estimate request — ${lead.projectType}`,
-      ``,
-      `Name: ${lead.firstName} ${lead.lastName}`,
-      `Phone: ${lead.phone}`,
-      `Email: ${lead.email}`,
-      `ZIP: ${lead.zip}`,
-      `Preferred contact: ${lead.contactMethod}`,
-      `Interested in financing: ${lead.financing ? "Yes" : "No"}`,
-      `Submitted: ${submittedAt}`,
-      lead.page ? `Page: ${lead.page}` : "",
-      lead.utm && Object.keys(lead.utm).length
-        ? `UTM: ${JSON.stringify(lead.utm)}`
-        : "",
-    ].filter(Boolean);
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${resendKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "Diamond Home Service Website <leads@diamondhomeservice.com>",
-        to: [toEmail],
-        subject: `New ${lead.projectType} lead: ${lead.firstName} ${lead.lastName} (${lead.zip})`,
-        text: lines.join("\n"),
-      }),
-    });
-    if (!res.ok) throw new Error(`Resend responded ${res.status}`);
-    return;
-  }
-
-  // Dev fallback — no destination configured.
-  console.log("[lead] no LEAD_WEBHOOK_URL / RESEND_API_KEY configured; payload:", payload);
 }
 
 export async function POST(request: NextRequest) {
@@ -162,7 +104,9 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    await forwardLead(parsed.data, new Date().toISOString());
+    // Strip the honeypot field before forwarding.
+    const { company: _company, ...lead } = parsed.data;
+    await forwardLead(lead, new Date().toISOString());
   } catch (err) {
     console.error("[lead] forwarding failed:", err);
     return NextResponse.json(

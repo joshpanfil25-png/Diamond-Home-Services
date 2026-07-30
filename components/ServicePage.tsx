@@ -101,7 +101,7 @@ export default function ServicePage({ content, heroImage, crossSell }: ServicePa
                 <article
                   key={s.title}
                   id={s.id}
-                  className="grid gap-6 lg:grid-cols-[1fr_1.4fr] lg:gap-12 scroll-mt-24"
+                  className="grid gap-6 lg:grid-cols-[1fr_1.4fr] lg:gap-12 scroll-mt-32"
                 >
                   <div>
                     <span className="diamond-mark" aria-hidden="true" />

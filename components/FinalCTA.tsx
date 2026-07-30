@@ -4,7 +4,7 @@ import CtaButton from "@/components/CtaButton";
 
 export default function FinalCTA() {
   return (
-    <section id="final-cta" className="bg-diamond-red text-diamond-white scroll-mt-20">
+    <section id="final-cta" className="bg-diamond-red text-diamond-white scroll-mt-32">
       <div className="container-diamond py-16 lg:py-20 text-center">
         {/* inline style: .diamond-mark is unlayered CSS and would beat the bg utility */}
         <span className="diamond-mark" style={{ background: "#ffffff" }} aria-hidden="true" />

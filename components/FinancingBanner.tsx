@@ -1,13 +1,14 @@
 import { DollarSign } from "lucide-react";
 import CtaButton from "@/components/CtaButton";
 
-// Prominent 0% financing banner — a white card overlapping the hero's bottom
-// edge, per the client's reference screenshot.
+// Prominent 0% financing banner — a narrow white card floating over the page
+// background with its own shadow (no full-width band), generous air above and
+// below (Round 3).
 export default function FinancingBanner() {
   return (
-    <div className="relative z-10 -mt-8 sm:-mt-10">
+    <div className="relative z-10 py-10 sm:py-14">
       <div className="container-diamond">
-        <div className="flex flex-col items-start gap-3 rounded-[10px] border border-diamond-border bg-diamond-white px-4 py-3 shadow-md sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+        <div className="mx-auto flex max-w-[760px] flex-col items-start gap-3 rounded-[10px] border border-diamond-border bg-diamond-white px-5 py-4 shadow-lg sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <div className="flex items-center gap-3">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[6px] bg-diamond-red">
               <DollarSign className="h-5 w-5 text-diamond-white" aria-hidden="true" />
