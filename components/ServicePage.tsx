@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check, Phone, ShieldCheck } from "lucide-react";
@@ -15,9 +16,11 @@ type ServicePageProps = {
   content: ServicePageContent;
   heroImage: MediaAsset;
   crossSell: CrossSellItem[];
+  /** Optional section rendered directly after the hero (Round 4: TrustPillars on /roofing). */
+  afterHero?: ReactNode;
 };
 
-export default function ServicePage({ content, heroImage, crossSell }: ServicePageProps) {
+export default function ServicePage({ content, heroImage, crossSell, afterHero }: ServicePageProps) {
   return (
     <>
       <a
@@ -93,6 +96,8 @@ export default function ServicePage({ content, heroImage, crossSell }: ServicePa
           </div>
         </section>
 
+        {afterHero}
+
         {/* Section blocks */}
         <section className="bg-diamond-white">
           <div className="container-diamond py-16 lg:py-20">
@@ -103,9 +108,11 @@ export default function ServicePage({ content, heroImage, crossSell }: ServicePa
                   id={s.id}
                   className="grid gap-6 lg:grid-cols-[1fr_1.4fr] lg:gap-12 scroll-mt-32"
                 >
-                  <div>
-                    <span className="diamond-mark" aria-hidden="true" />
-                    <h2 className="mt-3 font-display text-2xl sm:text-3xl font-extrabold text-diamond-charcoal">
+                  {/* Round 4: larger diamond sits LEFT of the heading on the
+                      same line (was stacked above it). */}
+                  <div className="flex items-center gap-3">
+                    <span className="diamond-mark diamond-mark-lg shrink-0" aria-hidden="true" />
+                    <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-diamond-charcoal">
                       {s.title}
                     </h2>
                   </div>
@@ -210,10 +217,16 @@ export default function ServicePage({ content, heroImage, crossSell }: ServicePa
         {/* Final CTA */}
         <section className="bg-diamond-red text-diamond-white">
           <div className="container-diamond py-16 lg:py-20 text-center">
-            <span className="diamond-mark" style={{ background: "#ffffff" }} aria-hidden="true" />
-            <h2 className="mt-4 font-display text-3xl sm:text-5xl font-extrabold">
-              {content.ctaHeadline}
-            </h2>
+            <div className="flex items-center justify-center gap-3">
+              <span
+                className="diamond-mark diamond-mark-lg shrink-0"
+                style={{ background: "#ffffff" }}
+                aria-hidden="true"
+              />
+              <h2 className="font-display text-3xl sm:text-5xl font-extrabold">
+                {content.ctaHeadline}
+              </h2>
+            </div>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-diamond-white/90">
               {content.ctaCopy}
             </p>

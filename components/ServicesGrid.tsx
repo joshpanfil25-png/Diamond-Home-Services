@@ -3,9 +3,9 @@ import Link from "next/link";
 import {
   AppWindow,
   ArrowRight,
-  Bath,
   Droplets,
   Home,
+  Images,
   Layers,
 } from "lucide-react";
 import { homeServices } from "@/content/media";
@@ -15,7 +15,7 @@ const iconMap = {
   droplet: Droplets,
   layers: Layers,
   window: AppWindow,
-  bath: Bath,
+  images: Images,
 } as const;
 
 export default function ServicesGrid() {
@@ -72,12 +72,12 @@ export default function ServicesGrid() {
           {/* Other services */}
           {items.map((svc) => {
             const Icon = iconMap[svc.icon as keyof typeof iconMap];
+            const cardClass =
+              "group flex flex-col overflow-hidden rounded-[8px] border border-diamond-border bg-diamond-white transition-colors hover:border-diamond-red focus-visible:outline-none";
+            // Same-page hash links use a plain <a> so the browser scrolls to the anchor.
+            const Card = svc.href.startsWith("/#") ? "a" : Link;
             return (
-              <Link
-                key={svc.title}
-                href={svc.href}
-                className="group flex flex-col overflow-hidden rounded-[8px] border border-diamond-border bg-diamond-white transition-colors hover:border-diamond-red focus-visible:outline-none"
-              >
+              <Card key={svc.title} href={svc.href} className={cardClass}>
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
                     src={svc.image.src}
@@ -103,7 +103,7 @@ export default function ServicesGrid() {
                     />
                   </span>
                 </div>
-              </Link>
+              </Card>
             );
           })}
         </div>

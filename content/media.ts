@@ -173,12 +173,12 @@ export const homeServices = {
       icon: "droplet",
     },
     {
-      // No dedicated page yet — routes to the estimate flow.
-      title: "Bathrooms & More",
-      copy: "Complete bathroom remodels, kitchens, flooring, and more home improvement services.",
+      // Round 4: replaced "Bathrooms & More" — anchors to the projects section.
+      title: "Recent Projects",
+      copy: "See our latest roofing, window, siding, and gutter projects across Chicagoland.",
       image: media.serviceOther,
-      href: "/#estimate",
-      icon: "bath",
+      href: "/#projects",
+      icon: "images",
     },
   ],
 };

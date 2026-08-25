@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, ShieldAlert } from "lucide-react";
 import { company, footer } from "@/content/site";
-import { media, paymentBadge } from "@/content/media";
+import { certifications, media, paymentBadge } from "@/content/media";
 
 // lucide-react no longer ships brand icons — inline SVG instead.
 function FacebookIcon({ className }: { className?: string }) {
@@ -56,11 +56,14 @@ function LinkColumn({
   );
 }
 
+// Round 4: hours line + clock removed; ROOFING column removed; OTHER SERVICES
+// renamed SERVICES; certification badges (BBB / ENERGY STAR / Lead-Safe)
+// moved here from the deleted homepage certifications row.
 export default function Footer() {
   return (
     <footer className="bg-diamond-black text-diamond-white pb-16 lg:pb-0">
       <div className="container-diamond py-14">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr_1fr]">
           <div>
             <span className="inline-block rounded-[6px] bg-diamond-white p-3">
               <Image
@@ -88,10 +91,6 @@ export default function Footer() {
                 <MapPin className="h-4 w-4 text-diamond-red mt-0.5" aria-hidden="true" />
                 {company.address}
               </p>
-              <p className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-diamond-red" aria-hidden="true" />
-                {company.hours}
-              </p>
             </div>
             <div className="mt-5 flex gap-3">
               <a
@@ -108,12 +107,46 @@ export default function Footer() {
             </div>
           </div>
 
-          <LinkColumn title="Roofing" links={footer.roofingLinks} />
-          <LinkColumn title="Other Services" links={footer.serviceLinks} />
+          <LinkColumn title="Services" links={footer.serviceLinks} />
           <LinkColumn title="Company" links={footer.companyLinks} />
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        {/* Certifications — verified badges from the live business profile. */}
+        <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-white/10 pt-6 sm:gap-6">
+          <span className="text-xs font-semibold uppercase tracking-wide text-diamond-white/60">
+            Certifications:
+          </span>
+          <a
+            href={certifications.bbb.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-16 items-center rounded-[6px] bg-diamond-white p-1"
+            aria-label="Better Business Bureau A+ rated — view profile"
+          >
+            <Image
+              src={certifications.bbb.src}
+              alt={certifications.bbb.alt}
+              width={certifications.bbb.width}
+              height={certifications.bbb.height}
+              className="h-full w-auto object-contain"
+            />
+          </a>
+          <span className="inline-flex h-16 items-center rounded-[6px] bg-diamond-white p-1">
+            <Image
+              src={certifications.energyStar.src}
+              alt={certifications.energyStar.alt}
+              width={certifications.energyStar.width}
+              height={certifications.energyStar.height}
+              className="h-full w-auto object-contain"
+            />
+          </span>
+          <span className="inline-flex h-16 items-center gap-2.5 rounded-[6px] border border-white/20 px-4 text-sm font-semibold text-diamond-white">
+            <ShieldAlert className="h-7 w-7 text-diamond-red" aria-hidden="true" />
+            {certifications.leadSafeLabel}
+          </span>
+        </div>
+
+        <div className="mt-6 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-diamond-white/60">
             © {new Date().getFullYear()} {company.name}. All rights reserved. Illinois Business
             License #: {company.licenseNumber}

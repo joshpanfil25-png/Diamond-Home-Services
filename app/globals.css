@@ -47,6 +47,12 @@
   transform: rotate(45deg);
 }
 
+/* Round 4: larger mark used inline to the LEFT of interior-page headings. */
+.diamond-mark-lg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
 html {
   scroll-behavior: smooth;
 }

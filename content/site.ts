@@ -24,66 +24,41 @@ export const utilityBar = {
   financing: "0% Financing Available",
 };
 
-export const nav: {
-  label: string;
-  href: string;
-  dropdown?: { label: string; href: string }[];
-}[] = [
-  {
-    label: "Roofing",
-    href: "/roofing",
-    dropdown: [
-      { label: "Roof Replacement", href: "/roofing#roof-replacement" },
-      { label: "Shingle Roofing", href: "/roofing#shingles" },
-      { label: "Rubber / Flat Roofing", href: "/roofing#rubber" },
-      { label: "Storm Damage", href: "/#storm" },
-    ],
-  },
+// Round 4: Roofing is a plain link (client removed all dropdowns).
+export const nav: { label: string; href: string }[] = [
+  { label: "Roofing", href: "/roofing" },
   { label: "Windows", href: "/windows" },
   { label: "Siding", href: "/siding" },
   { label: "Gutters", href: "/gutters" },
   { label: "Financing", href: "/#financing" },
   { label: "Projects", href: "/#projects" },
   { label: "About", href: "/#difference" },
-  { label: "Contact", href: "/#final-cta" },
+  { label: "Contact", href: "/#contact" },
 ];
 
+// Round 4 (8/25): client copy verbatim. Single tel: CTA, no secondary button.
 export const hero = {
-  eyebrow: "ROOFING • WINDOWS • SIDING • GUTTERS",
-  h1: "Chicagoland's Most Trusted Roofing & Home Improvement Company",
-  subhead: "Family Owned for Over 50 Years",
+  h1: "Your Chicagoland Roofing & Home Improvement Experts",
+  subhead: "For over 50 years",
   supporting:
-    "Whether you're replacing your roof or transforming your home, Diamond Home Service delivers expert craftsmanship you can trust. We specialize in roofing, siding, windows, and gutters while also providing beautiful kitchen, bathroom, and flooring renovations—all backed by honest recommendations, written warranties, and flexible 0% financing.",
-  primaryCta: "Get a Free Estimate",
-  serviceLine: "Serving Chicago and the entire metropolitan area",
-  trustPoints: [
-    "50+ years serving Chicagoland",
-    "Written warranties",
-    "0% financing available",
-  ],
+    "Roofing, windows, siding, gutters & more — quality work from a family-owned business you can trust.",
 };
 
-export const trustBar = [
-  {
-    title: "Local Chicagoland Experts",
-    note: "Proudly serving Chicago and the surrounding suburbs.",
-    icon: "pin",
-  },
-  {
-    title: "Insurance Claim Help",
-    note: "We work with your insurance to make it stress-free.",
-    icon: "shield",
-  },
-  {
-    title: "Fast Turnaround",
-    note: "Efficient scheduling and on-time project completion.",
-    icon: "timer",
-  },
-  {
-    title: "Warranty Backed",
-    note: "Industry-leading warranties for lasting peace of mind.",
-    icon: "badge",
-  },
+// Shared header/hero CTA — one red button with the phone number inside it.
+export const callCta = {
+  label: "Call for a Free Estimate",
+  phone: company.phoneDisplay,
+  href: company.phoneHref,
+};
+
+// Round 4: 5-column trust band that overlaps the bottom of the hero
+// (replaces the 0% financing banner).
+export const trustBand: { icon: string; label: string; href?: string }[] = [
+  { icon: "bbb", label: "A+ BBB Accredited" },
+  { icon: "years", label: "50+ Years Experience" },
+  { icon: "licensed", label: "Licensed & Bonded" },
+  { icon: "stars", label: "4.4 Stars on Google" },
+  { icon: "financing", label: "0% Financing Available" },
 ];
 
 // Google review summary — client-confirmed values (update as reviews grow).
@@ -136,28 +111,6 @@ export const diamondDifference = {
     "Clear communication",
     "0% financing options",
     "Free, no-obligation estimates",
-  ],
-};
-
-export const processSteps = {
-  headline: "A Clear Roofing Process from Start to Finish",
-  steps: [
-    {
-      title: "Schedule Your Free Estimate",
-      copy: "Reach out by phone or the estimate form and pick a time that works for you.",
-    },
-    {
-      title: "Receive a Clear Recommendation",
-      copy: "We inspect your roof and explain your options in plain language.",
-    },
-    {
-      title: "Review Materials and Financing",
-      copy: "Choose materials and, if helpful, explore 0% financing options.",
-    },
-    {
-      title: "Professional Installation and Cleanup",
-      copy: "Our crew completes the work and leaves your property clean.",
-    },
   ],
 };
 
@@ -221,6 +174,9 @@ export const serviceAreaTowns: { region: string; towns: string[] }[] = [
       "Oak Lawn", "Evergreen Park", "Burbank", "Bridgeview", "Palos Hills",
       "Palos Heights", "Palos Park", "Hickory Hills", "Alsip", "Crestwood",
       "Midlothian", "Blue Island", "Homewood", "Flossmoor", "Chicago Heights",
+      // Round 4: client wrote "Dalton" — the IL south suburb is Dolton.
+      // [CONFIRM spelling with client]
+      "Dolton", "Matteson",
     ],
   },
 ];
@@ -359,27 +315,31 @@ export const faqs = {
   ],
 };
 
+// Round 4: the former standalone "Ready to Protect Your Home?" section now
+// renders as a card beside the FAQ list (one combined tel: button).
+export const faqCta = {
+  headline: "Ready to Protect Your Home?",
+  copy: "Get a clear roofing recommendation from a company that has served Chicagoland homeowners for more than 50 years.",
+  buttonLabel: "Get a Free Estimate. Call Now",
+};
+
 export const footer = {
   trustStatement:
     "Family owned and operated for over 50 years, providing dependable roofing and home improvement across Chicagoland.",
-  roofingLinks: [
-    { label: "Roof Replacement", href: "/roofing#roof-replacement" },
-    { label: "Shingle Roofing", href: "/roofing#shingles" },
-    { label: "Rubber / Flat Roofing", href: "/roofing#rubber" },
-    { label: "Storm Damage", href: "/#storm" },
-    { label: "All Roofing Services", href: "/roofing" },
-  ],
+  // Round 4: single SERVICES column, exactly as the client listed it.
+  // NOTE: the client's list omits Siding (/siding still exists) —
+  // [CONFIRM with client] before adding it back.
   serviceLinks: [
+    { label: "Roofing", href: "/roofing" },
     { label: "Windows", href: "/windows" },
-    { label: "Siding, Soffit & Fascia", href: "/siding" },
-    { label: "Gutters & Downspouts", href: "/gutters" },
-    { label: "Home Improvements", href: "/#services" },
+    { label: "Gutters", href: "/gutters" },
+    { label: "Recent Projects", href: "/#projects" },
   ],
   companyLinks: [
     { label: "Financing", href: "/#financing" },
     { label: "Projects", href: "/#projects" },
     { label: "About", href: "/#difference" },
-    { label: "Contact", href: "/#final-cta" },
+    { label: "Contact", href: "/#contact" },
     { label: "Service Areas", href: "/#service-area" },
   ],
   legalLinks: [

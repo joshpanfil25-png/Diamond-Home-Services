@@ -10,9 +10,11 @@ const points = [
   "No obligation to request information",
 ];
 
-// Round 3: everything (heading, copy, checkmarks, CTAs, disclaimer) lives in
+// Round 3: everything (heading, copy, checkmarks, CTA, disclaimer) lives in
 // the red panel; the right side is the client's YouTube video. On mobile the
 // red panel stacks above the video.
+// Round 4: the two buttons collapse into ONE tel: button, and the video gets
+// a "What is the diamond difference? Watch now." header.
 export default function FinancingSection() {
   return (
     <section id="financing" className="scroll-mt-32">
@@ -42,13 +44,10 @@ export default function FinancingSection() {
               ))}
             </ul>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <CtaButton href="#estimate" variant="charcoal">
-                Explore Financing Options
-              </CtaButton>
-              <CtaButton href={company.phoneHref} variant="outlineLight">
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                Talk to a Roofing Specialist
+            <div className="mt-8">
+              <CtaButton href={company.phoneHref} variant="charcoal" className="text-center">
+                <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+                Call now to speak with a financing specialist.
               </CtaButton>
             </div>
 
@@ -61,6 +60,10 @@ export default function FinancingSection() {
         {/* Video side */}
         <div className="flex items-center bg-diamond-charcoal">
           <div className="w-full px-6 py-10 sm:px-10 lg:pr-10 lg:pl-16 lg:py-16">
+            <h3 className="mb-5 font-display text-2xl sm:text-3xl font-extrabold text-diamond-white">
+              What is the diamond difference?{" "}
+              <span className="text-diamond-red">Watch now.</span>
+            </h3>
             <LiteYouTube
               videoId="mIQANBMkeMY"
               title="Chicago Windows by Diamond Home Service"

@@ -20,7 +20,6 @@ const PROJECT_TYPES = [
   "Windows",
   "Gutters",
   "Siding",
-  "Storm Damage",
   "Bathroom",
   "Flooring",
   "Other Home Improvement",

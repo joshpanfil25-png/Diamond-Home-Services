@@ -9,7 +9,7 @@ const iconMap = {
 
 export default function TrustPillars() {
   return (
-    <section id="about-roofing" className="bg-diamond-warm">
+    <section id="about-roofing" className="bg-diamond-warm scroll-mt-32">
       <div className="container-diamond py-16 lg:py-20">
         <div className="max-w-3xl">
           <div className="flex items-center gap-2">

@@ -1,10 +1,13 @@
 import Image from "next/image";
-import { Check, MapPin, Phone } from "lucide-react";
-import { company, hero } from "@/content/site";
+import { Phone } from "lucide-react";
+import { callCta, hero } from "@/content/site";
 import { heroImage } from "@/content/media";
 import CtaButton from "@/components/CtaButton";
 import RoofingLeadForm from "@/components/RoofingLeadForm";
 
+// Round 4: stripped to H1 / "For over 50 years" / italic supporting line /
+// ONE tel: button. Extra bottom padding leaves room for the TrustBand that
+// overlaps the hero's bottom edge (see TrustBand.tsx).
 export default function Hero() {
   return (
     <section
@@ -35,50 +38,28 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="container-diamond relative py-12 lg:py-20">
+      <div className="container-diamond relative pt-12 pb-24 lg:pt-20 lg:pb-32">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           {/* Left content */}
           <div className="text-diamond-white">
-            <p className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-widest text-diamond-white/90">
-              <span className="diamond-mark" aria-hidden="true" />
-              {hero.eyebrow}
-            </p>
-            <h1 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
               {hero.h1}
             </h1>
-            <p className="mt-3 font-display text-lg sm:text-xl font-bold text-diamond-white/95">
+            <p className="mt-3 font-display text-xl sm:text-2xl font-bold text-diamond-white/95">
               {hero.subhead}
             </p>
-            <p className="mt-5 max-w-xl text-base sm:text-lg text-diamond-white/85">
+            <p className="mt-5 max-w-xl text-base sm:text-lg italic text-diamond-white/85">
               {hero.supporting}
             </p>
 
-            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-              {hero.trustPoints.map((point) => (
-                <li key={point} className="flex items-center gap-2 text-sm font-semibold">
-                  <Check
-                    className="h-4 w-4 text-diamond-red bg-diamond-white rounded-full p-0.5"
-                    aria-hidden="true"
-                  />
-                  {point}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <CtaButton href="#estimate" variant="red">
-                {hero.primaryCta}
-              </CtaButton>
-              <CtaButton href={company.phoneHref} variant="outlineLight">
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                Call {company.phoneDisplay}
+            <div className="mt-8">
+              <CtaButton href={callCta.href} variant="red" className="text-center">
+                <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>
+                  {callCta.label} <span className="font-extrabold">{callCta.phone}</span>
+                </span>
               </CtaButton>
             </div>
-
-            <p className="mt-5 flex items-center gap-2 text-sm text-diamond-white/80">
-              <MapPin className="h-4 w-4 text-diamond-red" aria-hidden="true" />
-              {hero.serviceLine}
-            </p>
           </div>
 
           {/* Right form */}

@@ -3,13 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown, Menu, Phone } from "lucide-react";
-import { company, nav } from "@/content/site";
+import { Menu, Phone } from "lucide-react";
+import { callCta, company, nav } from "@/content/site";
 import { media } from "@/content/media";
 import MobileMenu from "@/components/MobileMenu";
 
 export default function Header() {
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -43,80 +42,40 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Desktop nav — px-2 below xl keeps everything on one line at ~1024px */}
+        {/* Desktop nav — Round 4: plain links only, no dropdowns.
+            px-2 below xl keeps everything on one line at ~1024px. */}
         <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
-          {nav.map((item) => (
-            <div
-              key={item.label}
-              className="relative"
-              onMouseEnter={() => item.dropdown && setOpenDropdown(item.label)}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              {item.href.startsWith("/#") ? (
-                <a
-                  href={item.href}
-                  className="inline-flex items-center gap-1 px-2 xl:px-3 py-2 text-sm font-semibold text-diamond-charcoal hover:text-diamond-red rounded-[4px] transition-colors"
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <Link
-                  href={item.href}
-                  className="inline-flex items-center gap-1 px-2 xl:px-3 py-2 text-sm font-semibold text-diamond-charcoal hover:text-diamond-red rounded-[4px] transition-colors"
-                  aria-haspopup={item.dropdown ? "true" : undefined}
-                  aria-expanded={item.dropdown ? openDropdown === item.label : undefined}
-                >
-                  {item.label}
-                  {item.dropdown && <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />}
-                </Link>
-              )}
-              {item.dropdown && openDropdown === item.label && (
-                <div className="absolute left-0 top-full pt-1 w-60">
-                  <ul className="bg-diamond-white border border-diamond-border rounded-[6px] shadow-sm py-2">
-                    {item.dropdown.map((sub) =>
-                      sub.href.startsWith("/#") ? (
-                        <li key={sub.label}>
-                          <a
-                            href={sub.href}
-                            className="block px-4 py-2 text-sm text-diamond-charcoal hover:bg-diamond-warm hover:text-diamond-red border-l-2 border-transparent hover:border-diamond-red transition-colors"
-                          >
-                            {sub.label}
-                          </a>
-                        </li>
-                      ) : (
-                        <li key={sub.label}>
-                          <Link
-                            href={sub.href}
-                            className="block px-4 py-2 text-sm text-diamond-charcoal hover:bg-diamond-warm hover:text-diamond-red border-l-2 border-transparent hover:border-diamond-red transition-colors"
-                          >
-                            {sub.label}
-                          </Link>
-                        </li>
-                      )
-                    )}
-                  </ul>
-                </div>
-              )}
-            </div>
-          ))}
+          {nav.map((item) =>
+            item.href.startsWith("/#") ? (
+              <a
+                key={item.label}
+                href={item.href}
+                className="inline-flex items-center px-2 xl:px-3 py-2 text-sm font-semibold text-diamond-charcoal hover:text-diamond-red rounded-[4px] transition-colors"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="inline-flex items-center px-2 xl:px-3 py-2 text-sm font-semibold text-diamond-charcoal hover:text-diamond-red rounded-[4px] transition-colors"
+              >
+                {item.label}
+              </Link>
+            )
+          )}
         </nav>
 
-        {/* Right actions */}
+        {/* Right actions — Round 4: ONE red tel: button with the number inside. */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Phone — MUST stay on one line (fix #2): whitespace-nowrap + shrink-0,
-              shown from xl so nav + phone + CTA never crowd at ~1024–1180px. */}
           <a
-            href={company.phoneHref}
-            className="hidden xl:inline-flex items-center gap-1.5 text-sm font-bold text-diamond-charcoal hover:text-diamond-red whitespace-nowrap shrink-0"
+            href={callCta.href}
+            className="hidden sm:inline-flex items-center justify-center gap-2 rounded-[6px] bg-diamond-red px-4 py-2.5 text-sm font-semibold uppercase tracking-wide font-display text-diamond-white hover:bg-diamond-red-dark transition-colors whitespace-nowrap shrink-0"
           >
-            <Phone className="h-4 w-4 text-diamond-red" aria-hidden="true" />
-            {company.phoneDisplay}
-          </a>
-          <a
-            href="/#estimate"
-            className="hidden sm:inline-flex items-center justify-center rounded-[6px] bg-diamond-red px-4 py-2.5 text-sm font-semibold uppercase tracking-wide font-display text-diamond-white hover:bg-diamond-red-dark transition-colors whitespace-nowrap shrink-0"
-          >
-            Get a Free Estimate
+            <Phone className="h-4 w-4" aria-hidden="true" />
+            <span>
+              {callCta.label} <span className="font-extrabold">{callCta.phone}</span>
+            </span>
           </a>
           <button
             type="button"

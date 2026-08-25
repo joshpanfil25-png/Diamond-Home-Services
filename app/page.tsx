@@ -3,20 +3,15 @@ import { company } from "@/content/site";
 import UtilityBar from "@/components/UtilityBar";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import FinancingBanner from "@/components/FinancingBanner";
-import TrustBar from "@/components/TrustBar";
-import TrustPillars from "@/components/TrustPillars";
+import TrustBand from "@/components/TrustBand";
 import ServicesGrid from "@/components/ServicesGrid";
 import FinancingSection from "@/components/FinancingSection";
 import ProjectGallery from "@/components/ProjectGallery";
 import DiamondDifference from "@/components/DiamondDifference";
-import ProcessSteps from "@/components/ProcessSteps";
 import Reviews from "@/components/Reviews";
 import GoogleReviewBar from "@/components/GoogleReviewBar";
 import ServiceArea from "@/components/ServiceArea";
-import StormCTA from "@/components/StormCTA";
 import FAQ from "@/components/FAQ";
-import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import MobileConversionBar from "@/components/MobileConversionBar";
 
@@ -81,24 +76,19 @@ export default function Home() {
       <UtilityBar />
       <Header />
       <main id="main-content">
-        {/* DiamondDifference sits right after the financing banner (approved
-            conversion recommendation) — keep this order in sync with the
-            Round 2 spec. */}
+        {/* Round 4 (8/25) order. Removed: FinancingBanner (→ TrustBand),
+            TrustBar, certifications row (→ Footer), TrustPillars (→ /roofing),
+            ProcessSteps, StormCTA, FinalCTA (→ FAQ right column). */}
         <Hero />
-        <FinancingBanner />
+        <TrustBand />
         <DiamondDifference />
-        <TrustBar />
-        <TrustPillars />
         <ServicesGrid />
         <FinancingSection />
         <ProjectGallery />
-        <ProcessSteps />
         <GoogleReviewBar />
         <Reviews />
         <ServiceArea />
-        <StormCTA />
         <FAQ />
-        <FinalCTA />
       </main>
       <Footer />
       <MobileConversionBar />

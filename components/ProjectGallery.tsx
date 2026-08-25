@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArrowRight, MapPin } from "lucide-react";
 import { projects } from "@/content/media";
 import { projects as projectNarratives } from "@/content/site";
-import CtaButton from "@/components/CtaButton";
 import ProjectModal from "@/components/ProjectModal";
 
 export default function ProjectGallery() {
@@ -75,12 +74,6 @@ export default function ProjectGallery() {
           Project photos are representative of Diamond Home Service roofing,
           siding, window, and gutter work.
         </p>
-
-        <div className="mt-8">
-          <CtaButton href="#estimate" variant="outline">
-            View More Projects
-          </CtaButton>
-        </div>
       </div>
 
       {openIndex !== null && (

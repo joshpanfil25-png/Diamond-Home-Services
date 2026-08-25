@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ChevronDown, Phone, X } from "lucide-react";
-import { company, nav } from "@/content/site";
+import { Phone, X } from "lucide-react";
+import { callCta, nav } from "@/content/site";
 import CtaButton from "@/components/CtaButton";
 
 type MobileMenuProps = {
@@ -13,7 +13,6 @@ type MobileMenuProps = {
 
 export default function MobileMenu({ open, onClose }: MobileMenuProps) {
   const panelRef = useRef<HTMLDivElement>(null);
-  const [expanded, setExpanded] = useState<string | null>(null);
 
   // Close on Escape + trap focus inside the panel while open.
   useEffect(() => {
@@ -91,54 +90,12 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
           </button>
         </div>
 
+        {/* Round 4: flat list — no submenus. */}
         <nav className="flex-1 px-5 py-4" aria-label="Mobile navigation links">
           <ul className="space-y-1">
             {nav.map((item) => (
               <li key={item.label}>
-                {item.dropdown ? (
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <Link
-                        href={item.href}
-                        className="flex-1 py-3 text-base font-semibold text-diamond-charcoal"
-                        onClick={onClose}
-                      >
-                        {item.label}
-                      </Link>
-                      <button
-                        type="button"
-                        className="inline-flex h-10 w-10 items-center justify-center text-diamond-charcoal"
-                        aria-expanded={expanded === item.label}
-                        aria-label={`Toggle ${item.label} submenu`}
-                        onClick={() =>
-                          setExpanded(expanded === item.label ? null : item.label)
-                        }
-                      >
-                        <ChevronDown
-                          className={`h-4 w-4 transition-transform ${
-                            expanded === item.label ? "rotate-180" : ""
-                          }`}
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </div>
-                    {expanded === item.label && (
-                      <ul className="ml-3 border-l-2 border-diamond-red/30 pl-4 pb-2 space-y-1">
-                        {item.dropdown.map((child) => (
-                          <li key={child.label}>
-                            <Link
-                              href={child.href}
-                              className="block py-2 text-sm font-semibold text-muted-foreground hover:text-diamond-red"
-                              onClick={onClose}
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                ) : item.href.startsWith("/#") ? (
+                {item.href.startsWith("/#") ? (
                   <a
                     href={item.href}
                     className="block py-3 text-base font-semibold text-diamond-charcoal"
@@ -160,18 +117,13 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
           </ul>
         </nav>
 
-        <div className="border-t border-diamond-border px-5 py-4 space-y-3">
-          <CtaButton
-            variant="outline"
-            href={company.phoneHref}
-            className="w-full"
-            onClick={onClose}
-          >
-            <Phone className="h-4 w-4 text-diamond-red" aria-hidden="true" />
-            Call {company.phoneDisplay}
-          </CtaButton>
-          <CtaButton href="/#estimate" className="w-full" onClick={onClose}>
-            Get a Free Estimate
+        {/* Round 4: one combined call button. */}
+        <div className="border-t border-diamond-border px-5 py-4">
+          <CtaButton href={callCta.href} className="w-full text-center" onClick={onClose}>
+            <Phone className="h-4 w-4" aria-hidden="true" />
+            <span>
+              {callCta.label} {callCta.phone}
+            </span>
           </CtaButton>
         </div>
       </div>

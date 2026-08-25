@@ -52,8 +52,10 @@ export default function GoogleReviewBar() {
         />
       </div>
 
-      <div className="container-diamond relative py-8 lg:py-10">
-        <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-8">
+      {/* Round 4: much deeper strip so more of the house photo shows;
+          content stays vertically centered via min-h + flex. */}
+      <div className="container-diamond relative flex min-h-[320px] items-center py-16 lg:min-h-[420px] lg:py-24">
+        <div className="flex w-full flex-col gap-6 md:flex-row md:items-center md:gap-8">
           {/* Rating — links to the Google Business Profile reviews page */}
           <div className="md:pr-8">
             <a
