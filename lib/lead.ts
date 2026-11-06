@@ -27,6 +27,7 @@ export type Lead = {
 export type LeadEnv = {
   RESEND_API_KEY?: string;
   LEAD_TO_EMAIL?: string;
+  LEAD_FROM_EMAIL?: string;
   LEAD_WEBHOOK_URL?: string;
 };
 
@@ -64,6 +65,8 @@ export async function forwardLead(
 ): Promise<void> {
   if (env.RESEND_API_KEY) {
     const toEmail = env.LEAD_TO_EMAIL || DEFAULT_LEAD_TO_EMAIL;
+    const fromEmail =
+      env.LEAD_FROM_EMAIL || "Diamond Home Service Website <leads@diamondhomeservice.com>";
     const { subject, text, replyTo } = buildLeadEmail(lead, submittedAt);
     const res = await fetchFn("https://api.resend.com/emails", {
       method: "POST",
@@ -72,7 +75,7 @@ export async function forwardLead(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Diamond Home Service Website <leads@diamondhomeservice.com>",
+        from: fromEmail,
         to: [toEmail],
         reply_to: replyTo,
         subject,

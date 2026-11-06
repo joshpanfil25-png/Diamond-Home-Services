@@ -62,9 +62,26 @@ describe("forwardLead", () => {
     const body = JSON.parse(init.body);
     expect(body.to).toEqual([DEFAULT_LEAD_TO_EMAIL]);
     expect(body.to).toEqual(["info@diamondhomeservice.com"]);
+    expect(body.from).toBe(
+      "Diamond Home Service Website <leads@diamondhomeservice.com>"
+    );
     expect(body.reply_to).toBe("pat@example.com");
     expect(body.subject).toBe("New Estimate Request — Bathroom — 60630");
     expect(init.headers.Authorization).toBe("Bearer re_test");
+  });
+
+  it("honors a LEAD_FROM_EMAIL override", async () => {
+    const fetchFn = okFetch();
+    await forwardLead(
+      lead,
+      submittedAt,
+      { RESEND_API_KEY: "re_test", LEAD_FROM_EMAIL: "Diamond <noreply@example.com>" },
+      fetchFn
+    );
+    const body = JSON.parse(
+      (fetchFn as ReturnType<typeof vi.fn>).mock.calls[0][1].body
+    );
+    expect(body.from).toBe("Diamond <noreply@example.com>");
   });
 
   it("honors a LEAD_TO_EMAIL override", async () => {
