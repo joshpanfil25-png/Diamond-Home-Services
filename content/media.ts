@@ -311,3 +311,62 @@ export const secondaryServices = {
     },
   ],
 };
+
+// ---------------------------------------------------------------------------
+// Round 5 (11/5): section photos for /roofing and /windows. Keyed by section
+// title (see content/site.ts). Only real project photos already in the repo.
+// `zoom` / `origin` crop into a photo with CSS (scale + transform-origin) so a
+// single real photo can serve two sections until the Lovable CDN site photos
+// listed in the header of this file are fetched.
+// ---------------------------------------------------------------------------
+export type SectionPhoto = MediaAsset & {
+  zoom?: number;
+  /** CSS transform-origin, e.g. "40% 30%". */
+  origin?: string;
+};
+
+export const sectionPhotos: Record<"roofing" | "windows", Record<string, SectionPhoto>> = {
+  roofing: {
+    "Shingle Roofing": {
+      // [CLIENT: swap photo] closest real shingle photo (site-shingle-dormers.jpg not fetched yet)
+      ...media.project1,
+      alt: "Chicago brick home with a newly installed dark architectural asphalt shingle roof and dormers",
+    },
+    "Rubber & Low-Slope Roofing": {
+      ...media.shingleLowSlope,
+      alt: "Black rubber membrane low-slope roof meeting a sloped asphalt shingle roof",
+    },
+    "Roof Replacement & Repair": {
+      // [CLIENT: swap photo] repair close-up; roof-replacement.jpg is already the page hero
+      ...media.roofRepair,
+      alt: "Close-up of asphalt shingles and metal flashing at a chimney after a roof repair",
+    },
+  },
+  windows: {
+    "Slider Window": {
+      // [CLIENT: swap photo] no dedicated slider photo in repo; crop of the horizontal window in service-other.jpg
+      ...media.serviceOther,
+      zoom: 2.1,
+      origin: "75% 72%",
+      alt: "New white horizontal slider window on a split-level home with blue vinyl siding",
+    },
+    "Double-Hung Window": {
+      ...media.serviceWindows,
+      alt: "New white double-hung vinyl windows set in a red brick wall with a stone sill",
+    },
+    "Bay Window": {
+      // [CLIENT: swap photo] crop of project-3.jpg until site-bay-window.jpg is fetched
+      ...media.project3,
+      zoom: 1.7,
+      origin: "40% 30%",
+      alt: "White vinyl bay window on the front of a Chicago brick two-flat",
+    },
+    "Glass Block Windows": {
+      // [CLIENT: swap photo] crop of project-3.jpg until site-glass-block.jpg is fetched
+      ...media.project3,
+      zoom: 2.3,
+      origin: "46% 96%",
+      alt: "Glass block basement windows set into a brick foundation",
+    },
+  },
+};

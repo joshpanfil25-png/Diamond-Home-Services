@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { company } from "@/content/site";
+import { company, siteUrl } from "@/content/site";
 import UtilityBar from "@/components/UtilityBar";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -22,11 +22,13 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  alternates: { canonical: "/" },
   openGraph: {
     title,
     description:
       "Roof replacement, repair, storm inspections, written warranties, and flexible financing throughout Chicagoland. Request a free estimate.",
     type: "website",
+    url: "/",
   },
   twitter: {
     card: "summary_large_image",
@@ -43,6 +45,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "RoofingContractor",
   name: company.name,
+  url: siteUrl,
   description:
     "Roofing contractor serving Chicago and the surrounding metropolitan area. Roof replacement, repair, storm inspections, and financing.",
   telephone: "+1-773-286-5446",

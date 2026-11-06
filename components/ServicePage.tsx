@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check, Phone, ShieldCheck } from "lucide-react";
 import { company, type ServicePageContent } from "@/content/site";
-import type { MediaAsset } from "@/content/media";
+import type { MediaAsset, SectionPhoto } from "@/content/media";
 import UtilityBar from "@/components/UtilityBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -18,9 +18,11 @@ type ServicePageProps = {
   crossSell: CrossSellItem[];
   /** Optional section rendered directly after the hero (Round 4: TrustPillars on /roofing). */
   afterHero?: ReactNode;
+  /** Round 5: optional photo per section, keyed by section title. Alternates sides. */
+  sectionPhotos?: Record<string, SectionPhoto>;
 };
 
-export default function ServicePage({ content, heroImage, crossSell, afterHero }: ServicePageProps) {
+export default function ServicePage({ content, heroImage, crossSell, afterHero, sectionPhotos }: ServicePageProps) {
   return (
     <>
       <a
@@ -102,20 +104,19 @@ export default function ServicePage({ content, heroImage, crossSell, afterHero }
         <section className="bg-diamond-white">
           <div className="container-diamond py-16 lg:py-20">
             <div className="grid gap-12 lg:gap-16">
-              {content.sections.map((s) => (
-                <article
-                  key={s.title}
-                  id={s.id}
-                  className="grid gap-6 lg:grid-cols-[1fr_1.4fr] lg:gap-12 scroll-mt-32"
-                >
-                  {/* Round 4: larger diamond sits LEFT of the heading on the
-                      same line (was stacked above it). */}
+              {content.sections.map((s, i) => {
+                const photo = sectionPhotos?.[s.title];
+                // Round 4: larger diamond sits LEFT of the heading on the
+                // same line (was stacked above it).
+                const heading = (
                   <div className="flex items-center gap-3">
                     <span className="diamond-mark diamond-mark-lg shrink-0" aria-hidden="true" />
                     <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-diamond-charcoal">
                       {s.title}
                     </h2>
                   </div>
+                );
+                const body = (
                   <div>
                     <p className="text-lg text-diamond-charcoal/85">{s.copy}</p>
                     {s.bullets && (
@@ -137,8 +138,60 @@ export default function ServicePage({ content, heroImage, crossSell, afterHero }
                       </p>
                     )}
                   </div>
-                </article>
-              ))}
+                );
+
+                // No photo (/siding, /gutters): original heading-left layout.
+                if (!photo) {
+                  return (
+                    <article
+                      key={s.title}
+                      id={s.id}
+                      className="grid gap-6 lg:grid-cols-[1fr_1.4fr] lg:gap-12 scroll-mt-32"
+                    >
+                      {heading}
+                      {body}
+                    </article>
+                  );
+                }
+
+                // Round 5: photo + (heading, copy, bullets). Photo stacks above
+                // the text on mobile; on desktop it alternates sides.
+                return (
+                  <article
+                    key={s.title}
+                    id={s.id}
+                    className="grid items-center gap-6 lg:grid-cols-2 lg:gap-12 scroll-mt-32"
+                  >
+                    <div
+                      className={`overflow-hidden rounded-[8px] bg-diamond-warm ${
+                        i % 2 === 1 ? "lg:order-2" : ""
+                      }`}
+                      style={{ aspectRatio: "4 / 3" }}
+                    >
+                      <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        width={photo.width}
+                        height={photo.height}
+                        sizes="(min-width: 1024px) 560px, 100vw"
+                        className="h-full w-full object-cover"
+                        style={
+                          photo.zoom
+                            ? {
+                                transform: `scale(${photo.zoom})`,
+                                transformOrigin: photo.origin ?? "center",
+                              }
+                            : undefined
+                        }
+                      />
+                    </div>
+                    <div className="grid gap-5">
+                      {heading}
+                      {body}
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>

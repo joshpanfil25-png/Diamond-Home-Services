@@ -5,6 +5,9 @@
 // Items marked [CONFIRM ...] are placeholders awaiting company verification.
 // ---------------------------------------------------------------------------
 
+// Production domain (apex). www is added in Vercel and redirects here.
+export const siteUrl = "https://diamondhomeservice.com";
+
 export const company = {
   name: "Diamond Home Service",
   tagline: "Family Owned and Operated for Over 50 Years",

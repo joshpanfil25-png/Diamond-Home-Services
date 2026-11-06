@@ -8,10 +8,12 @@ const content = interiorPages.gutters;
 export const metadata: Metadata = {
   title: content.metaTitle,
   description: content.metaDescription,
+  alternates: { canonical: "/gutters" },
   openGraph: {
     title: content.metaTitle,
     description: content.metaDescription,
     type: "website",
+    url: "/gutters",
   },
   twitter: { card: "summary_large_image" },
 };

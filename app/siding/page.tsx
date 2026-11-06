@@ -8,10 +8,12 @@ const content = interiorPages.siding;
 export const metadata: Metadata = {
   title: content.metaTitle,
   description: content.metaDescription,
+  alternates: { canonical: "/siding" },
   openGraph: {
     title: content.metaTitle,
     description: content.metaDescription,
     type: "website",
+    url: "/siding",
   },
   twitter: { card: "summary_large_image" },
 };

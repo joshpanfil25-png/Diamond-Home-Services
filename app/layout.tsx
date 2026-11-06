@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
+import { siteUrl } from "@/content/site";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -15,6 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Roofing Contractor in Chicago | Diamond Home Service",
   description:
     "Diamond Home Service provides roof replacement, roof repair, storm inspections, written warranties, and flexible financing throughout Chicagoland. Request a free estimate.",

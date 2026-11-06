@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 
-// Production domain per the live site (diamondhomeservice.com). Confirm with
-// the client whether the rebuild replaces it or launches elsewhere.
-const BASE_URL = "https://www.diamondhomeservice.com";
+import { siteUrl } from "@/content/site";
+
+const BASE_URL = siteUrl;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
