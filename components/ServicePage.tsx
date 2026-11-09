@@ -18,11 +18,13 @@ type ServicePageProps = {
   crossSell: CrossSellItem[];
   /** Optional section rendered directly after the hero (Round 4: TrustPillars on /roofing). */
   afterHero?: ReactNode;
-  /** Round 5: optional photo per section, keyed by section title. Alternates sides. */
+  /** Round 5: optional photo per section, keyed by section title. Rendered as a compact card grid (Round 6). */
   sectionPhotos?: Record<string, SectionPhoto>;
+  /** Round 6: optional block rendered after the section grid (financing + video on /windows). */
+  afterSections?: ReactNode;
 };
 
-export default function ServicePage({ content, heroImage, crossSell, afterHero, sectionPhotos }: ServicePageProps) {
+export default function ServicePage({ content, heroImage, crossSell, afterHero, sectionPhotos, afterSections }: ServicePageProps) {
   return (
     <>
       <a
@@ -103,8 +105,14 @@ export default function ServicePage({ content, heroImage, crossSell, afterHero, 
         {/* Section blocks */}
         <section className="bg-diamond-white">
           <div className="container-diamond py-16 lg:py-20">
-            <div className="grid gap-12 lg:gap-16">
-              {content.sections.map((s, i) => {
+            <div
+              className={
+                sectionPhotos
+                  ? `grid gap-8 sm:grid-cols-2 ${content.sections.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`
+                  : "grid gap-12 lg:gap-16"
+              }
+            >
+              {content.sections.map((s) => {
                 const photo = sectionPhotos?.[s.title];
                 // Round 4: larger diamond sits LEFT of the heading on the
                 // same line (was stacked above it).
@@ -154,18 +162,16 @@ export default function ServicePage({ content, heroImage, crossSell, afterHero, 
                   );
                 }
 
-                // Round 5: photo + (heading, copy, bullets). Photo stacks above
-                // the text on mobile; on desktop it alternates sides.
+                // Round 6: compact card (photo on top, then diamond + heading,
+                // copy, single-column bullets). Replaces the Round 5 tall rows.
                 return (
                   <article
                     key={s.title}
                     id={s.id}
-                    className="grid items-center gap-6 lg:grid-cols-2 lg:gap-12 scroll-mt-32"
+                    className="flex flex-col scroll-mt-32"
                   >
                     <div
-                      className={`overflow-hidden rounded-[8px] bg-diamond-warm ${
-                        i % 2 === 1 ? "lg:order-2" : ""
-                      }`}
+                      className="overflow-hidden rounded-[8px] bg-diamond-warm"
                       style={{ aspectRatio: "4 / 3" }}
                     >
                       <Image
@@ -173,7 +179,7 @@ export default function ServicePage({ content, heroImage, crossSell, afterHero, 
                         alt={photo.alt}
                         width={photo.width}
                         height={photo.height}
-                        sizes="(min-width: 1024px) 560px, 100vw"
+                        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                         className="h-full w-full object-cover"
                         style={
                           photo.zoom
@@ -185,16 +191,39 @@ export default function ServicePage({ content, heroImage, crossSell, afterHero, 
                         }
                       />
                     </div>
-                    <div className="grid gap-5">
-                      {heading}
-                      {body}
+                    <div className="mt-4 flex items-center gap-2.5">
+                      <span className="diamond-mark shrink-0" aria-hidden="true" />
+                      <h2 className="font-display text-xl font-extrabold text-diamond-charcoal">
+                        {s.title}
+                      </h2>
                     </div>
+                    <p className="mt-2 text-base text-diamond-charcoal/85">{s.copy}</p>
+                    {s.bullets && (
+                      <ul className="mt-4 grid gap-2">
+                        {s.bullets.map((b) => (
+                          <li key={b} className="flex items-start gap-2 text-sm text-diamond-charcoal">
+                            <Check
+                              className="mt-0.5 h-4 w-4 text-diamond-red shrink-0"
+                              aria-hidden="true"
+                            />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {s.note && (
+                      <p className="mt-4 rounded-[6px] border border-diamond-border bg-diamond-warm p-3 text-sm text-muted-foreground">
+                        {s.note}
+                      </p>
+                    )}
                   </article>
                 );
               })}
             </div>
           </div>
         </section>
+
+        {afterSections}
 
         {/* Benefits / features */}
         <section className="bg-diamond-warm border-y border-diamond-border">

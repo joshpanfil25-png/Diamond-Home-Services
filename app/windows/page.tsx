@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { interiorPages } from "@/content/site";
 import { interiorHeroes, sectionPhotos } from "@/content/media";
 import ServicePage from "@/components/ServicePage";
+import FinancingSection from "@/components/FinancingSection";
 
 const content = interiorPages.windows;
 
@@ -24,6 +25,7 @@ export default function WindowsPage() {
       content={content}
       heroImage={interiorHeroes.windows}
       sectionPhotos={sectionPhotos.windows}
+      afterSections={<FinancingSection />}
       crossSell={[
         { label: "Siding", to: "/siding", copy: "Pair new windows with fresh vinyl siding." },
         { label: "Roofing", to: "/roofing", copy: "Ask about bundling with your roof project." },
